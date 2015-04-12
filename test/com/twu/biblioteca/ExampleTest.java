@@ -5,6 +5,8 @@ import org.junit.*;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.Scanner;
+
 import static org.junit.Assert.assertEquals;
 
 public class ExampleTest {
@@ -48,6 +50,14 @@ public class ExampleTest {
         manager.showOptions();
         String output = outContent.toString();
         assertEquals("Please choose an option:\n1.List Books\n", output);
+    }
+
+    @Test
+    public void testShowOptionsCalled() {
+    }
+
+    @Test
+    public void testInvalidMenuOption() {
     }
 
 }

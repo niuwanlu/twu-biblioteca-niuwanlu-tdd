@@ -15,6 +15,8 @@ public class BibliotecaAppManager {
         while (scanner.hasNext()) {
             if (scanner.next().equals("1")) {
                 manager.createApp();
+            } else {
+                System.out.println("Select a valid option!");
             }
         }
     }
