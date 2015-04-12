@@ -23,8 +23,8 @@ public class ExampleTest {
 
     @Test
     public void testWelcomeMessage() {
-        BibliotecaApp app = new BibliotecaApp();
-        app.showWelcome();
+        BibliotecaAppManager manager = new BibliotecaAppManager();
+        manager.showWelcome();
         String output = outContent.toString();
         String[] linesOfOutput = output.split(System.getProperty("line.separator"));
         assertEquals("Welcome!", linesOfOutput[0]);
@@ -37,15 +37,15 @@ public class ExampleTest {
         manager.createApp();
         String output = outContent.toString();
         String[] linesOfOutput = output.split(System.getProperty("line.separator"));
-        assertEquals("=======Book List=======", linesOfOutput[2]);
-        assertEquals("Book Name: Harry Potter  Author:  J.K.Rolling  Published Year: 2000", linesOfOutput[3]);
-        assertEquals("Book Name: Head First Java  Author:  Kathy Sierra  Published Year: 2007", linesOfOutput[4]);
+        assertEquals("=======Book List=======", linesOfOutput[0]);
+        assertEquals("Book Name: Harry Potter  Author:  J.K.Rolling  Published Year: 2000", linesOfOutput[1]);
+        assertEquals("Book Name: Head First Java  Author:  Kathy Sierra  Published Year: 2007", linesOfOutput[2]);
     }
 
     @Test
     public void testShowOptions() {
-        BibliotecaApp app = new BibliotecaApp();
-        app.showOptions();
+        BibliotecaAppManager manager = new BibliotecaAppManager();
+        manager.showOptions();
         String output = outContent.toString();
         assertEquals("Please choose an option:\n1.List Books\n", output);
     }

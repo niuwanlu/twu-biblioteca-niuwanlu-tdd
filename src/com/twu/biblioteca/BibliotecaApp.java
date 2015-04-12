@@ -12,11 +12,6 @@ public class BibliotecaApp {
         return books;
     }
 
-    public void showWelcome() {
-        System.out.println("Welcome!");
-        System.out.println("=======================");
-    }
-
     public void printBookList() {
         Book[] books = getBooks();
         System.out.println("=======Book List=======");
@@ -27,8 +22,5 @@ public class BibliotecaApp {
         }
     }
 
-    public void showOptions() {
-        System.out.println("Please choose an option:\n1.List Books");
-    }
 
 }
