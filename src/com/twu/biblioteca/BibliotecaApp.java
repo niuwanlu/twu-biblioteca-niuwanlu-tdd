@@ -13,6 +13,11 @@ public class BibliotecaApp {
     }
 
     public static void main(String[] args) {
+        showWelcome();
+        BibliotecaAppUser.createApp();
+    }
+
+    public static void showWelcome() {
         System.out.println("Welcome!");
         System.out.println("=======================");
     }

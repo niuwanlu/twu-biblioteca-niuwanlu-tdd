@@ -23,7 +23,7 @@ public class ExampleTest {
 
     @Test
     public void testWelcomeMessage() {
-        BibliotecaApp.main(new String[] {});
+        BibliotecaApp.showWelcome();
         String output = outContent.toString();
         String[] linesOfOutput = output.split(System.getProperty("line.separator"));
         assertEquals("Welcome!", linesOfOutput[0]);
@@ -32,15 +32,12 @@ public class ExampleTest {
 
     @Test
     public void testBookList() {
-        BibliotecaApp biblioteca = new BibliotecaApp();
-        String[] bookList = {"Harry Potter", "Head First Java"};
-        biblioteca.setBooks(bookList);
-        biblioteca.printBookList();
+        BibliotecaAppUser.createApp();
         String output = outContent.toString();
         String[] linesOfOutput = output.split(System.getProperty("line.separator"));
         assertEquals("=======Book List=======", linesOfOutput[0]);
-        assertEquals(bookList[0], linesOfOutput[1]);
-        assertEquals(bookList[1], linesOfOutput[2]);
+        assertEquals("Harry Potter", linesOfOutput[1]);
+        assertEquals("Head First Java", linesOfOutput[2]);
     }
 
 }
