@@ -16,9 +16,11 @@ public class BibliotecaApp {
         Book[] books = getBooks();
         System.out.println("=======Book List=======");
         for (Book book : books ) {
-            System.out.print("Book Name: " + book.getName() + "  ");
-            System.out.print("Author:  " + book.getAuthor() + "  ");
-            System.out.println("Published Year: " + book.getYearPublished());
+            if (!book.isCheckOut()) {
+                System.out.print("Book Name: " + book.getName() + "  ");
+                System.out.print("Author:  " + book.getAuthor() + "  ");
+                System.out.println("Published Year: " + book.getYearPublished());
+            }
         }
     }
 

@@ -8,14 +8,16 @@ public class Book {
     private String name;
     private String author;
     private String yearPublished;
+    private boolean checkOut;
 
     public Book() {
     }
 
-    public Book(String name, String author, String yearPublished) {
+    public Book(String name, String author, String yearPublished, boolean checkOut) {
         this.name = name;
         this.author = author;
         this.yearPublished = yearPublished;
+        this.checkOut = checkOut;
     }
 
     public String getName() {
@@ -41,5 +43,15 @@ public class Book {
     public void setYearPublished(String yearPublished) {
         this.yearPublished = yearPublished;
     }
+
+
+    public boolean isCheckOut() {
+        return checkOut;
+    }
+
+    public void setCheckOut(boolean checkOut) {
+        this.checkOut = checkOut;
+    }
+
 
 }

@@ -27,8 +27,8 @@ public class BibliotecaAppManager {
 
     public void createApp() {
         BibliotecaApp app = new BibliotecaApp();
-        Book book1 = new Book("Harry Potter", "J.K.Rolling", "2000");
-        Book book2 = new Book("Head First Java", "Kathy Sierra", "2007");
+        Book book1 = new Book("Harry Potter", "J.K.Rolling", "2000", false);
+        Book book2 = new Book("Head First Java", "Kathy Sierra", "2007", true);
         Book[] bookList = {book1, book2};
         app.setBooks(bookList);
         app.printBookList();
