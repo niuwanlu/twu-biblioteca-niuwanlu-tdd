@@ -25,7 +25,7 @@ public class BibliotecaAppManager {
                 checkOutBook(manager, app, scanner);
                 continue;
             } else if (optoin.equals("3")) {
-//                returnBook(manager, app, bookList, scanner);
+                returnBook(manager, app, scanner);
                 continue;
 
             } else if (optoin.equals("4")) {
@@ -37,9 +37,25 @@ public class BibliotecaAppManager {
         }
     }
 
+    private static void returnBook(BibliotecaAppManager manager, BibliotecaApp app, Scanner scanner) {
+        System.out.println("Please input the book number you want to return. Input 0 to cancel.");
+        while (scanner.hasNextLine()) {
+            int number = Integer.parseInt(scanner.nextLine());
+            if (number == 0) {
+                manager.showOptions();
+                return;
+            } else if ( (number > 0 && number <= app.getBooks().size()) && app.getBooks().get(number - 1).isCheckOut()) {
+                    app.getBooks().get(number - 1).setCheckOut(false);
+                    System.out.println("Thank you for return the book.");
+            } else {
+                System.out.println("That is a invalid book to return.");
+            }
+        }
+    }
+
     private static void checkOutBook(BibliotecaAppManager manager, BibliotecaApp app, Scanner scanner) {
         app.printBookList();
-        System.out.println("Please choose the book you want to check out. Input 0 to cancel.");
+        System.out.println("Please choose the book number you want to check out. Input 0 to cancel.");
         while (scanner.hasNextLine()) {
             int number = Integer.parseInt(scanner.nextLine());
             if (number == 0) {
