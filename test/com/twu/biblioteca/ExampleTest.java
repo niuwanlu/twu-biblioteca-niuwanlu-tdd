@@ -54,7 +54,7 @@ public class ExampleTest {
         BibliotecaAppManager manager = new BibliotecaAppManager();
         manager.showOptions();
         String output = outContent.toString();
-        assertEquals("Please choose an option:\n1.List Books\n2.Quit\n", output);
+        assertEquals("Please choose an option:\n1.List Books\n2.Check Out Books\n3.Quit\n", output);
     }
 
     @Test

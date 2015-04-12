@@ -17,6 +17,7 @@ public class BibliotecaApp {
         System.out.println("=======Book List=======");
         for (Book book : books ) {
             if (!book.isCheckOut()) {
+                System.out.print("Book Number: " + book.getNumber() + "  ");
                 System.out.print("Book Name: " + book.getName() + "  ");
                 System.out.print("Author:  " + book.getAuthor() + "  ");
                 System.out.println("Published Year: " + book.getYearPublished());

@@ -5,12 +5,17 @@ package com.twu.biblioteca;
  */
 public class Book {
 
+    private static int total = 0;
+
+    private int number;
     private String name;
     private String author;
     private String yearPublished;
     private boolean checkOut;
 
     public Book() {
+        total++;
+        this.number = total;
     }
 
     public Book(String name, String author, String yearPublished, boolean checkOut) {
@@ -18,6 +23,8 @@ public class Book {
         this.author = author;
         this.yearPublished = yearPublished;
         this.checkOut = checkOut;
+        total++;
+        this.number = total;
     }
 
     public String getName() {
@@ -53,5 +60,19 @@ public class Book {
         this.checkOut = checkOut;
     }
 
+    public int getNumber() {
+        return number;
+    }
 
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
+    public static int getTotal() {
+        return total;
+    }
+
+    public static void setTotal(int total) {
+        Book.total = total;
+    }
 }
