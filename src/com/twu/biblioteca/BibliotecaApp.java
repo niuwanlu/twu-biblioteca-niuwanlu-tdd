@@ -2,13 +2,13 @@ package com.twu.biblioteca;
 
 public class BibliotecaApp {
 
-    private String[] books;
+    private Book[] books;
 
-    public void setBooks(String[] books) {
+    public void setBooks(Book[] books) {
         this.books = books;
     }
 
-    public String[] getBooks() {
+    public Book[] getBooks() {
         return books;
     }
 
@@ -23,10 +23,12 @@ public class BibliotecaApp {
     }
 
     public void printBookList() {
-        String[] books = getBooks();
+        Book[] books = getBooks();
         System.out.println("=======Book List=======");
-        for (String book : books ) {
-            System.out.println(book);
+        for (Book book : books ) {
+            System.out.print("Book Name: " + book.getName() + "  ");
+            System.out.print("Author:  " + book.getAuthor() + "  ");
+            System.out.println("Published Year: " + book.getYearPublished());
         }
     }
 

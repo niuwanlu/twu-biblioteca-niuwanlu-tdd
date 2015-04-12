@@ -4,6 +4,7 @@ package com.twu.biblioteca;
  * Created by wlniu on 4/12/15.
  */
 public class Book {
+
     private String name;
     private String author;
     private String yearPublished;
@@ -16,4 +17,29 @@ public class Book {
         this.author = author;
         this.yearPublished = yearPublished;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public String getYearPublished() {
+        return yearPublished;
+    }
+
+    public void setYearPublished(String yearPublished) {
+        this.yearPublished = yearPublished;
+    }
+
 }
