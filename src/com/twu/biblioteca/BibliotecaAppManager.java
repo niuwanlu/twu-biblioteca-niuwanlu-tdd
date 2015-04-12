@@ -12,9 +12,13 @@ public class BibliotecaAppManager {
         manager.showWelcome();
         manager.showOptions();
         Scanner scanner = new Scanner(System.in);
-        while (scanner.hasNext()) {
-            if (scanner.next().equals("1")) {
+        while (scanner.hasNextLine()) {
+            String optoin = scanner.nextLine();
+            if (optoin.equals("1")) {
                 manager.createApp();
+            } else if (optoin.equals("2")) {
+                System.out.println("Quit!");
+                break;
             } else {
                 System.out.println("Select a valid option!");
             }
@@ -36,7 +40,7 @@ public class BibliotecaAppManager {
     }
 
     public void showOptions() {
-        System.out.println("Please choose an option:\n1.List Books");
+        System.out.println("Please choose an option:\n1.List Books\n2.Quit");
     }
 
 }
