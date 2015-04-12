@@ -1,19 +1,21 @@
 package com.twu.biblioteca;
 
+import java.util.ArrayList;
+
 public class BibliotecaApp {
 
-    private Book[] books;
-
-    public void setBooks(Book[] books) {
-        this.books = books;
-    }
-
-    public Book[] getBooks() {
+    public ArrayList<Book> getBooks() {
         return books;
     }
 
+    private ArrayList<Book> books = new ArrayList<Book>();
+
+    public void addBook(Book book) {
+        book.setNumber(books.size()+1);
+        books.add(book);
+    }
+
     public void printBookList() {
-        Book[] books = getBooks();
         System.out.println("=======Book List=======");
         for (Book book : books ) {
             if (!book.isCheckOut()) {

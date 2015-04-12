@@ -13,18 +13,22 @@ public class BibliotecaAppManager {
         manager.showOptions();
         BibliotecaApp app = new BibliotecaApp();
         Book book1 = new Book("Harry Potter", "J.K.Rolling", "2000", false);
+        app.addBook(book1);
         Book book2 = new Book("Head First Java", "Kathy Sierra", "2007", false);
-        Book[] bookList = {book1, book2};
-        app.setBooks(bookList);
+        app.addBook(book2);
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNextLine()) {
             String optoin = scanner.nextLine();
             if (optoin.equals("1")) {
                 app.printBookList();
             } else if (optoin.equals("2")) {
-                checkOutBook(manager, app, bookList, scanner);
+                checkOutBook(manager, app, scanner);
                 continue;
             } else if (optoin.equals("3")) {
+//                returnBook(manager, app, bookList, scanner);
+                continue;
+
+            } else if (optoin.equals("4")) {
                 System.out.println("Quit!");
                 break;
             } else {
@@ -33,7 +37,7 @@ public class BibliotecaAppManager {
         }
     }
 
-    private static void checkOutBook(BibliotecaAppManager manager, BibliotecaApp app, Book[] bookList, Scanner scanner) {
+    private static void checkOutBook(BibliotecaAppManager manager, BibliotecaApp app, Scanner scanner) {
         app.printBookList();
         System.out.println("Please choose the book you want to check out. Input 0 to cancel.");
         while (scanner.hasNextLine()) {
@@ -41,11 +45,10 @@ public class BibliotecaAppManager {
             if (number == 0) {
                 manager.showOptions();
                 return;
-            } else if (number < 0 || number > Book.getTotal()) {
+            } else if (number < 0 || number > app.getBooks().size()) {
                 System.out.println("That book is not available! Please recheck.");
             } else {
-                bookList[number - 1].setCheckOut(true);
-                app.setBooks(bookList);
+                app.getBooks().get(number - 1).setCheckOut(true);
                 System.out.println("Thank you! Enjoy the book.");
             }
         }
@@ -57,7 +60,7 @@ public class BibliotecaAppManager {
     }
 
     public void showOptions() {
-        System.out.println("Please choose an option:\n1.List Books\n2.Check Out Books\n3.Quit");
+        System.out.println("Please choose an option:\n1.List Books\n2.Check Out Books\n3.Return Book\n4.Quit");
     }
 
 }

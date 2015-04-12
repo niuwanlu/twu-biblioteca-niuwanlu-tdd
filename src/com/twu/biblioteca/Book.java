@@ -14,8 +14,6 @@ public class Book {
     private boolean checkOut;
 
     public Book() {
-        total++;
-        this.number = total;
     }
 
     public Book(String name, String author, String yearPublished, boolean checkOut) {
@@ -23,8 +21,6 @@ public class Book {
         this.author = author;
         this.yearPublished = yearPublished;
         this.checkOut = checkOut;
-        total++;
-        this.number = total;
     }
 
     public String getName() {
