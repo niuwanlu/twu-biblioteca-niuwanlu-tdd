@@ -12,12 +12,7 @@ public class BibliotecaApp {
         return books;
     }
 
-    public static void main(String[] args) {
-        showWelcome();
-        BibliotecaAppUser.createApp();
-    }
-
-    public static void showWelcome() {
+    public void showWelcome() {
         System.out.println("Welcome!");
         System.out.println("=======================");
     }
@@ -30,6 +25,10 @@ public class BibliotecaApp {
             System.out.print("Author:  " + book.getAuthor() + "  ");
             System.out.println("Published Year: " + book.getYearPublished());
         }
+    }
+
+    public void showOptions() {
+        System.out.println("Please choose an option:\n1.List Books");
     }
 
 }
