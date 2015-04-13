@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 public class BibliotecaApp {
 
+    private ArrayList<Book> books = new ArrayList<Book>();
+
     public ArrayList<Book> getBooks() {
         return books;
     }
-
-    private ArrayList<Book> books = new ArrayList<Book>();
 
     public void addBook(Book book) {
         book.setNumber(books.size()+1);

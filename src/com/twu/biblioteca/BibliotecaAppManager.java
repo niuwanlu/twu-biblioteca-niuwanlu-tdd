@@ -11,12 +11,17 @@ public class BibliotecaAppManager {
         BibliotecaAppManager manager = new BibliotecaAppManager();
         manager.showWelcome();
         manager.showMainMenu();
+        BibliotecaApp app = createBibliotecaApp();
+        manager.appRun(app);
+    }
+
+    private static BibliotecaApp createBibliotecaApp() {
         BibliotecaApp app = new BibliotecaApp();
         Book book1 = new Book("Harry Potter", "J.K.Rolling", "2000", false);
         app.addBook(book1);
         Book book2 = new Book("Head First Java", "Kathy Sierra", "2007", false);
         app.addBook(book2);
-        manager.appRun(app);
+        return app;
     }
 
     public void appRun(BibliotecaApp app) {

@@ -70,6 +70,13 @@ public class ExampleTest {
 
     @Test
     public void testInvalidMenuOption() {
+        BibliotecaApp app = Mockito.mock(BibliotecaApp.class);
+        BibliotecaAppManager manager = new BibliotecaAppManager();
+        String opt = "5";
+        System.setIn(new ByteArrayInputStream(opt.getBytes()));
+        manager.appRun(app);
+        String output = outContent.toString();
+        assertEquals("Select a valid option!\n", output);
     }
 
     @Test
