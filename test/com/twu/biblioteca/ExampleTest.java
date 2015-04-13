@@ -2,7 +2,9 @@ package com.twu.biblioteca;
 
 
 import org.junit.*;
-
+import org.mockito.Mockito;
+import static org.mockito.Mockito.*;
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
@@ -49,15 +51,21 @@ public class ExampleTest {
     }
 
     @Test
-    public void testShowOptions() {
+    public void testShowMainMenu() {
         BibliotecaAppManager manager = new BibliotecaAppManager();
-        manager.showOptions();
+        manager.showMainMenu();
         String output = outContent.toString();
         assertEquals("Please choose an option:\n1.List Books\n2.Check Out Books\n3.Return Book\n4.Quit\n", output);
     }
 
     @Test
-    public void testShowOptionsCalled() {
+    public void testMenuOptionsCalled() {
+        BibliotecaApp app = Mockito.mock(BibliotecaApp.class);
+        BibliotecaAppManager manager = new BibliotecaAppManager();
+        String opt = "1";
+        System.setIn(new ByteArrayInputStream(opt.getBytes()));
+        manager.appRun(app);
+        verify(app).printBookList();
     }
 
     @Test
@@ -78,5 +86,7 @@ public class ExampleTest {
         assertEquals("=======Book List=======", linesOfOutput[0]);
         assertEquals("Book Number: 2  Book Name: Head First Java  Author:  Kathy Sierra  Published Year: 2007", linesOfOutput[1]);
     }
+
+
 
 }
