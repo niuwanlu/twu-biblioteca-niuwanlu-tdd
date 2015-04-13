@@ -7,7 +7,6 @@ import static org.mockito.Mockito.*;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.util.Scanner;
 
 import static org.junit.Assert.assertEquals;
 
@@ -107,6 +106,20 @@ public class ExampleTest {
         String output = outContent.toString();
         String[] linesOfOutput = output.split(System.getProperty("line.separator"));
         assertEquals("Thank you! Enjoy the book.", linesOfOutput[2]);
+    }
+
+    @Test
+    public void testUnsuccessfulCheckOutBook() {
+        BibliotecaAppManager manager = new BibliotecaAppManager();
+        BibliotecaApp app = new BibliotecaApp();
+        Book book1 = new Book("Harry Potter", "J.K.Rolling", "2000", true);
+        app.addBook(book1);
+        String input = "3";
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+        manager.checkOutBook(app);
+        String output = outContent.toString();
+        String[] linesOfOutput = output.split(System.getProperty("line.separator"));
+        assertEquals("That book is not available! Please recheck.", linesOfOutput[2]);
     }
 
 }
