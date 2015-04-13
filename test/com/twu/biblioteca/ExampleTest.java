@@ -7,6 +7,7 @@ import static org.mockito.Mockito.*;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.Scanner;
 
 import static org.junit.Assert.assertEquals;
 
@@ -94,6 +95,18 @@ public class ExampleTest {
         assertEquals("Book Number: 2  Book Name: Head First Java  Author:  Kathy Sierra  Published Year: 2007", linesOfOutput[1]);
     }
 
-
+    @Test
+    public void testSuccessfulCheckOutBook() {
+        BibliotecaAppManager manager = new BibliotecaAppManager();
+        BibliotecaApp app = new BibliotecaApp();
+        Book book1 = new Book("Harry Potter", "J.K.Rolling", "2000", true);
+        app.addBook(book1);
+        String input = "1";
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+        manager.checkOutBook(app);
+        String output = outContent.toString();
+        String[] linesOfOutput = output.split(System.getProperty("line.separator"));
+        assertEquals("Thank you! Enjoy the book.", linesOfOutput[2]);
+    }
 
 }
