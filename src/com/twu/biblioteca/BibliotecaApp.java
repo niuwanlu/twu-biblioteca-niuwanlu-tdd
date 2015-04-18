@@ -102,6 +102,7 @@ public class BibliotecaApp {
     }
 
     public void returnBook() {
+        showCheckedOutBookList();
         while (scanner.hasNextLine()) {
             int number = Integer.parseInt(scanner.nextLine());
             if (number == 0) {
@@ -115,11 +116,24 @@ public class BibliotecaApp {
 
     }
 
+    private void showCheckedOutBookList() {
+        System.out.println("===================== Checked Out Book List =====================");
+        for (Book book : bookList.getBooks()) {
+            if (!book.getAvailable()) {
+                System.out.println("Book Number: " + book.getBookNumber() + "     Book Name: " + book.getName() + "     Author: " + book.getAuthor() + "     Published Year: " + book.getPublishYear());
+            }
+        }
+        System.out.println("=================================================================");
+        System.out.println("Please input the book number which you want to return. Input 0 to exit.");
+    }
+
     private void unsuccessfulReturnBook() {
 
     }
 
-    private void successfulReturnBook(int number) {
+    public void successfulReturnBook(int number) {
         bookList.getBooks().get(number-1).setAvailable(true);
+        System.out.println("Thank you for returning book.");
+        showCheckedOutBookList();
     }
 }

@@ -101,4 +101,13 @@ public class BibliotecaAppTest {
         verify(app).returnBook();
         assertEquals(0, app.getBookList().getAmountOfBooks() - app.getBookList().getAmountOfAvailableBooks());
     }
+
+    @Test
+    public void testSuccessfulReturnBook() {
+        String input = "2\n1\n0\n3\n1\n";
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+        BibliotecaApp app = Mockito.spy(new BibliotecaApp());
+        app.start();
+        verify(app).successfulReturnBook(1);
+    }
 }
