@@ -23,6 +23,9 @@ public class BibliotecaApp {
             String option = scanner.nextLine();
             if (option.equals("1")) {
                 showBookList();
+            } else if (option.equals("4")) {
+                quitApp();
+                break;
             } else {
                 invalidOption();
             }
@@ -56,5 +59,9 @@ public class BibliotecaApp {
 
     public void showMainMenu() {
         System.out.println("Please choose an option:\n1.List Books\n2.Check Out Books\n3.Return Books\n4.Quit\n");
+    }
+
+    public void quitApp() {
+        System.out.println("Quit! Bye");
     }
 }

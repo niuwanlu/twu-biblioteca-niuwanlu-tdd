@@ -43,4 +43,23 @@ public class BibliotecaAppTest {
         app.start();
         verify(app).invalidOption();
     }
+
+    @Test
+    public void testContinueChooseOption() throws Exception {
+        String input = "1\n1";
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+        BibliotecaApp app = Mockito.spy(new BibliotecaApp());
+        app.start();
+        verify(app, times(2)).showBookList();
+    }
+
+    @Test
+    public void testQuitWhenChooseTheOption() throws Exception {
+        String input = "4\n1";
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+        BibliotecaApp app = Mockito.spy(new BibliotecaApp());
+        app.start();
+        verify(app).quitApp();
+        verify(app, never()).showBookList();
+    }
 }
