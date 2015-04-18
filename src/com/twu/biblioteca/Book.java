@@ -8,15 +8,21 @@ public class Book {
     private String name;
     private String author;
     private String publishYear;
+    private boolean available;
+    private int bookNumber;
+    private static int totalNumber = 0;
+
 
     public Book(String name) {
         this.name = name;
     }
 
-    public Book(String name, String author, String publishYear) {
+    public Book(String name, String author, String publishYear, boolean available) {
         this.name = name;
         this.author = author;
         this.publishYear = publishYear;
+        this.available = available;
+        this.bookNumber = (++totalNumber);
     }
 
     public String getName() {
@@ -41,6 +47,19 @@ public class Book {
 
     public void setPublishYear(String publishYear) {
         this.publishYear = publishYear;
+    }
+
+
+    public boolean getAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
+    }
+
+    public int getBookNumber() {
+        return bookNumber;
     }
 
 }

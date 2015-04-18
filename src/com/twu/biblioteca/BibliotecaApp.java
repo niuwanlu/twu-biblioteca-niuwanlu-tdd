@@ -8,21 +8,30 @@ import java.util.Scanner;
  */
 public class BibliotecaApp {
 
-    private ArrayList<Book> bookList;
+    private BookList bookList;
+    private final Scanner scanner = new Scanner(System.in);
+
+    public BookList getBookList() {
+        return bookList;
+    }
 
     public void start() {
         showWelcome();
-        initBookList();
+        bookList = new BookList();
+        bookList.initBookList();
         showMainMenu();
         processUserInput();
     }
 
-    private void processUserInput() {
-        Scanner scanner = new Scanner(System.in);
+    public void processUserInput() {
         while (scanner.hasNextLine()) {
             String option = scanner.nextLine();
             if (option.equals("1")) {
                 showBookList();
+                showMainMenu();
+            } else if (option.equals("2")) {
+                checkOutBook();
+                showMainMenu();
             } else if (option.equals("4")) {
                 quitApp();
                 break;
@@ -36,14 +45,6 @@ public class BibliotecaApp {
         System.out.println("This option is invalid, please select a valid option!");
     }
 
-    private void initBookList() {
-        bookList = new ArrayList<Book>();
-        Book book1 = new Book("Harry Potter", "J.K.Rowling", "1997");
-        bookList.add(book1);
-        Book book2 = new Book("A Song of Ice and Fire", "George R. R. Martin", "1996");
-        bookList.add(book2);
-    }
-
     public void showWelcome() {
         System.out.println("Welcome to Biblioteca!");
         System.out.println();
@@ -51,8 +52,10 @@ public class BibliotecaApp {
 
     public void showBookList() {
         System.out.println("======================== Book List ========================");
-        for (Book book : bookList) {
-            System.out.println("Book Name: " + book.getName() + "     Author: " + book.getAuthor() + "     Published Year: " + book.getPublishYear());
+        for (Book book : bookList.getBooks()) {
+            if (book.getAvailable()) {
+                System.out.println("Book Number: " + book.getBookNumber() + "     Book Name: " + book.getName() + "     Author: " + book.getAuthor() + "     Published Year: " + book.getPublishYear());
+            }
         }
         System.out.println("===========================================================");
     }
@@ -63,5 +66,20 @@ public class BibliotecaApp {
 
     public void quitApp() {
         System.out.println("Quit! Bye");
+    }
+
+    public void checkOutBook() {
+        showBookList();
+        System.out.println("Please choose the book number which you want to check out. Input 0 to exit.");
+        while (scanner.hasNextLine()) {
+            int number = Integer.parseInt(scanner.nextLine());
+            if (number == 0) {
+                return;
+            } else {
+                bookList.getBooks().get(number-1).setAvailable(false);
+                showBookList();
+                System.out.println("Please choose the book number which you want to check out. Input 0 to exit.");
+            }
+        }
     }
 }
