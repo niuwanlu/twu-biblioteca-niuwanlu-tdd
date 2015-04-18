@@ -8,7 +8,9 @@ public class BibliotecaAppManager {
     public static void main(String[] args) {
         BookList bookList = new BookList();
         bookList.initBookList();
-        BibliotecaApp bibliotecaApp = new BibliotecaApp(bookList);
+        MovieList movieList = new MovieList();
+        movieList.initMovieList();
+        BibliotecaApp bibliotecaApp = new BibliotecaApp(bookList, movieList);
         bibliotecaApp.start();
     }
 }

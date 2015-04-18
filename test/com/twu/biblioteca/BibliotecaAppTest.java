@@ -37,7 +37,7 @@ public class BibliotecaAppTest {
 
     @Test
     public void testInvalidMenuOptionCalled() {
-        String input = "5";
+        String input = "9";
         System.setIn(new ByteArrayInputStream(input.getBytes()));
         BibliotecaApp app = Mockito.spy(new BibliotecaApp());
         app.start();
@@ -56,7 +56,7 @@ public class BibliotecaAppTest {
 
     @Test
     public void testQuitWhenChooseTheOption() {
-        String input = "4\n1";
+        String input = "5\n1";
         System.setIn(new ByteArrayInputStream(input.getBytes()));
         BookList bookList = Mockito.mock(BookList.class);
         BibliotecaApp app = Mockito.spy(new BibliotecaApp(bookList));

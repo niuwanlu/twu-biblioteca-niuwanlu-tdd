@@ -8,6 +8,7 @@ import java.util.Scanner;
 public class BibliotecaApp {
 
     private BookList bookList;
+    private MovieList movieList;
     private final Scanner scanner = new Scanner(System.in);
 
     public BibliotecaApp() {
@@ -15,6 +16,15 @@ public class BibliotecaApp {
 
     public BibliotecaApp(BookList bookList) {
         this.bookList = bookList;
+    }
+
+    public BibliotecaApp(MovieList movieList) {
+        this.movieList = movieList;
+    }
+
+    public BibliotecaApp(BookList bookList, MovieList movieList) {
+        this.bookList = bookList;
+        this.movieList = movieList;
     }
 
     public BookList getBookList() {
@@ -44,6 +54,9 @@ public class BibliotecaApp {
                 returnBook();
                 showMainMenu();
             } else if (option.equals("4")) {
+                movieList.showMovieList();
+                showMainMenu();
+            } else if (option.equals("5")) {
                 quitApp();
                 break;
             } else {
@@ -62,7 +75,7 @@ public class BibliotecaApp {
     }
 
     public void showMainMenu() {
-        System.out.println("Please choose an option:\n1.List Books\n2.Check Out Books\n3.Return Books\n4.Quit\n");
+        System.out.println("Please choose an option:\n1.List Books\n2.Check Out Books\n3.Return Books\n4.List Movies\n5.Quit\n");
     }
 
     public void quitApp() {
