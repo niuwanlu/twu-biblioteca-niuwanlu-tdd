@@ -56,7 +56,7 @@ public class BibliotecaAppTest {
 
     @Test
     public void testQuitWhenChooseTheOption() {
-        String input = "5\n1";
+        String input = "6\n1";
         System.setIn(new ByteArrayInputStream(input.getBytes()));
         BookList bookList = Mockito.mock(BookList.class);
         BibliotecaApp app = Mockito.spy(new BibliotecaApp(bookList));
@@ -85,7 +85,7 @@ public class BibliotecaAppTest {
         bookList.initBookList();
         BibliotecaApp app = Mockito.spy(new BibliotecaApp(bookList));
         app.start();
-        verify(app).successfulCheckOut(1);
+        verify(app).successfulCheckOutBook(1);
     }
 
     @Test
@@ -95,7 +95,7 @@ public class BibliotecaAppTest {
         BookList bookList = Mockito.mock(BookList.class);
         BibliotecaApp app = Mockito.spy(new BibliotecaApp(bookList));
         app.start();
-        verify(app).unsuccessfulCheckOut();
+        verify(app).unsuccessfulCheckOutBook();
     }
 
     @Test

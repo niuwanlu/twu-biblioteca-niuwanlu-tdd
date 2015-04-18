@@ -31,6 +31,10 @@ public class BibliotecaApp {
         return bookList;
     }
 
+    public MovieList getMovieList() {
+        return movieList;
+    }
+
     public void setBookList(BookList bookList) {
         this.bookList = bookList;
     }
@@ -57,6 +61,9 @@ public class BibliotecaApp {
                 movieList.showMovieList();
                 showMainMenu();
             } else if (option.equals("5")) {
+                checkOutMovie();
+                showMainMenu();
+            } else if (option.equals("6")) {
                 quitApp();
                 break;
             } else {
@@ -75,7 +82,7 @@ public class BibliotecaApp {
     }
 
     public void showMainMenu() {
-        System.out.println("Please choose an option:\n1.List Books\n2.Check Out Books\n3.Return Books\n4.List Movies\n5.Quit\n");
+        System.out.println("Please choose an option:\n1.List Books\n2.Check Out Books\n3.Return Books\n4.List Movies\n5.Check Out Movie\n6.Quit\n");
     }
 
     public void quitApp() {
@@ -89,25 +96,25 @@ public class BibliotecaApp {
             if (number == 0) {
                 return;
             } else if (number > 0 && number <= bookList.getAmountOfBooks() && bookList.getBooks().get(number-1).getAvailable()) {
-                successfulCheckOut(number);
+                successfulCheckOutBook(number);
             } else {
-                unsuccessfulCheckOut();
+                unsuccessfulCheckOutBook();
             }
         }
     }
 
-    public void successfulCheckOut(int number) {
-        bookList.getBooks().get(number - 1).setAvailable(false);
+    public void successfulCheckOutBook(int number) {
+        movieList.getMovies().get(number - 1).setAvailable(false);
         System.out.println("Thank you! Enjoy the book.");
-        showBookListWithCheckOutNote();
+        showMovieListWithCheckOutNote();
     }
 
     private void showBookListWithCheckOutNote() {
-        bookList.showBookList();
-        System.out.println("Please choose the book number which you want to check out. Input 0 to exit.");
+        movieList.showMovieList();
+        System.out.println("Please choose the movie number which you want to check out. Input 0 to exit.");
     }
 
-    public void unsuccessfulCheckOut() {
+    public void unsuccessfulCheckOutBook() {
         System.out.println("That book is not available. Please check out other books.");
         showBookListWithCheckOutNote();
     }
@@ -137,4 +144,35 @@ public class BibliotecaApp {
         System.out.println("Thank you for returning book.");
         bookList.showCheckedOutBookList();
     }
+
+    public void checkOutMovie() {
+        showMovieListWithCheckOutNote();
+        while (scanner.hasNextLine()) {
+            int number = Integer.parseInt(scanner.nextLine());
+            if (number == 0) {
+                return;
+            } else if (number > 0 && number <= movieList.getAmountOfMovies() && movieList.getMovies().get(number-1).isAvailable()) {
+                successfulCheckOutMovie(number);
+            } else {
+                unsuccessfulCheckOutMovie();
+            }
+        }
+    }
+
+    private void showMovieListWithCheckOutNote() {
+        movieList.showMovieList();
+        System.out.println("Please choose the movie number which you want to check out. Input 0 to exit.");
+    }
+
+    public void successfulCheckOutMovie(int number) {
+        movieList.getMovies().get(number - 1).setAvailable(false);
+        System.out.println("Thank you! Enjoy the movie.");
+        showMovieListWithCheckOutNote();
+    }
+
+    public void unsuccessfulCheckOutMovie() {
+        System.out.println("That movie is not available. Please check out other b movies.");
+        showMovieListWithCheckOutNote();
+    }
+
 }

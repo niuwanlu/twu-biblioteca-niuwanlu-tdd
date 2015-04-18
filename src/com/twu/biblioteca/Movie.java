@@ -9,12 +9,17 @@ public class Movie {
     private String year;
     private String director;
     private int rating;
+    private boolean available;
+    private int movieNumber;
+    private static int totalNumber = 0;
 
-    public Movie(String name, String year, String director, int rating) {
+    public Movie(String name, String year, String director, int rating, boolean available) {
         this.name = name;
         this.year = year;
         this.director = director;
         this.rating = rating;
+        this.available = available;
+        this.movieNumber = (++totalNumber);
     }
 
     public String getName() {
@@ -47,6 +52,22 @@ public class Movie {
 
     public void setRating(int rating) {
         this.rating = rating;
+    }
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
+    }
+
+    public int getMovieNumber() {
+        return movieNumber;
+    }
+
+    public void setMovieNumber(int movieNumber) {
+        this.movieNumber = movieNumber;
     }
 
 }

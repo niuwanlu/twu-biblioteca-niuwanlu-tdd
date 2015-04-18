@@ -5,6 +5,7 @@ import org.mockito.Mockito;
 
 import java.io.ByteArrayInputStream;
 
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
 public class BibliotecaAppReleaseTwoTest {
@@ -17,5 +18,17 @@ public class BibliotecaAppReleaseTwoTest {
         BibliotecaApp app = Mockito.spy(new BibliotecaApp(movieList));
         app.processUserInput();
         verify(movieList).showMovieList();
+    }
+
+    @Test
+    public void testCheckoutMovie() {
+        String input = "5\n1";
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+        MovieList movieList = new MovieList();
+        movieList.initMovieList();
+        BibliotecaApp app = Mockito.spy(new BibliotecaApp(movieList));
+        app.processUserInput();
+        verify(app).checkOutMovie();
+        assertEquals(1, app.getMovieList().getAmountOfMovies() - app.getMovieList().getAmountOfAvailableMovies());
     }
 }
