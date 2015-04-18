@@ -17,19 +17,22 @@ public class BibliotecaApp {
 
     private void initBookList() {
         bookList = new ArrayList<Book>();
-        Book book1 = new Book("Harry Potter");
+        Book book1 = new Book("Harry Potter", "J.K.Rowling", "1997");
         bookList.add(book1);
-        Book book2 = new Book("The Song of Ice and Fire");
+        Book book2 = new Book("A Song of Ice and Fire", "George R. R. Martin", "1996");
         bookList.add(book2);
     }
 
     public void showWelcome() {
-        System.out.println("Welcome to Bivlioteca!");
+        System.out.println("Welcome to Biblioteca!");
+        System.out.println();
     }
 
     public void showBookList() {
+        System.out.println("======================== Book List ========================");
         for (Book book : bookList) {
-            System.out.println(book.getName());
+            System.out.println("Book Name: " + book.getName() + "     Author: " + book.getAuthor() + "     Published Year: " + book.getPublishYear());
         }
+        System.out.println("===========================================================");
     }
 }
