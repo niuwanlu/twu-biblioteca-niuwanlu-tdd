@@ -127,8 +127,9 @@ public class BibliotecaApp {
         System.out.println("Please input the book number which you want to return. Input 0 to exit.");
     }
 
-    private void unsuccessfulReturnBook() {
-
+    public void unsuccessfulReturnBook() {
+        System.out.println("That book is not a valid book to return.");
+        showCheckedOutBookList();
     }
 
     public void successfulReturnBook(int number) {

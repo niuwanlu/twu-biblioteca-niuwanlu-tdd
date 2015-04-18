@@ -110,4 +110,13 @@ public class BibliotecaAppTest {
         app.start();
         verify(app).successfulReturnBook(1);
     }
+
+    @Test
+    public void testUnsuccessfulReturnBook() throws Exception {
+        String input = "2\n1\n0\n3\n2\n";
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+        BibliotecaApp app = Mockito.spy(new BibliotecaApp());
+        app.start();
+        verify(app).unsuccessfulReturnBook();
+    }
 }
