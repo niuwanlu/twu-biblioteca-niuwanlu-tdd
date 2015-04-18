@@ -1,6 +1,7 @@
 package com.twu.biblioteca;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * Created by wlniu on 4/17/15.
@@ -12,7 +13,14 @@ public class BibliotecaApp {
     public void start() {
         showWelcome();
         initBookList();
-        showBookList();
+        showMainMenu();
+        Scanner scanner = new Scanner(System.in);
+        while (scanner.hasNextLine()) {
+            String option = scanner.nextLine();
+            if (option.equals("1")) {
+                showBookList();
+            }
+        }
     }
 
     private void initBookList() {
@@ -34,5 +42,9 @@ public class BibliotecaApp {
             System.out.println("Book Name: " + book.getName() + "     Author: " + book.getAuthor() + "     Published Year: " + book.getPublishYear());
         }
         System.out.println("===========================================================");
+    }
+
+    public void showMainMenu() {
+        System.out.println("Please choose an option:\n1.List Books\n2.Check Out Books\n3.Return Books\n4.Quit\n");
     }
 }
