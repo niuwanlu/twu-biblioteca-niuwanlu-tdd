@@ -77,6 +77,7 @@ public class BibliotecaApp {
                 return;
             } else {
                 bookList.getBooks().get(number-1).setAvailable(false);
+                System.out.println("Thank you! Enjoy the book.");
                 showBookList();
                 System.out.println("Please choose the book number which you want to check out. Input 0 to exit.");
             }
