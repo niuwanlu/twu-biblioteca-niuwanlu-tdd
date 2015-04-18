@@ -5,19 +5,28 @@ package com.twu.biblioteca;
  */
 public class Book {
 
+    private static int totalNumber = 0;
+
     private String name;
     private String author;
     private String publishYear;
     private boolean available;
     private int bookNumber;
-    private static int totalNumber = 0;
+    private String borrower;
 
     public Book(String name, String author, String publishYear, boolean available) {
         this.name = name;
         this.author = author;
         this.publishYear = publishYear;
         this.available = available;
-        this.bookNumber = (++totalNumber);
+    }
+
+    public Book(String name, String author, String publishYear, boolean available, String borrower) {
+        this.name = name;
+        this.author = author;
+        this.publishYear = publishYear;
+        this.available = available;
+        this.borrower = borrower;
     }
 
     public String getName() {
@@ -57,4 +66,15 @@ public class Book {
         return bookNumber;
     }
 
+    public void setBookNumber(int bookNumber) {
+        this.bookNumber = bookNumber;
+    }
+
+    public String getBorrower() {
+        return borrower;
+    }
+
+    public void setBorrower(String borrower) {
+        this.borrower = borrower;
+    }
 }

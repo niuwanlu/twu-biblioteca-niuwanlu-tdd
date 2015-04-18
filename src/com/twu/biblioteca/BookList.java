@@ -12,8 +12,10 @@ public class BookList {
     public void initBookList() {
         books = new ArrayList<Book>();
         Book book1 = new Book("Harry Potter", "J.K.Rowling", "1997", true);
+        book1.setBookNumber(books.size()+1);
         books.add(book1);
         Book book2 = new Book("A Song of Ice and Fire", "George R. R. Martin", "1996", true);
+        book2.setBookNumber(books.size()+1);
         books.add(book2);
     }
 
@@ -45,6 +47,11 @@ public class BookList {
         System.out.println("===========================================================");
     }
 
+    public void showCheckedOutBookListWithPrompt() {
+        showCheckedOutBookList();
+        System.out.println("Please input the book number which you want to return. Input 0 to exit.");
+    }
+
     public void showCheckedOutBookList() {
         System.out.println("===================== Checked Out Book List =====================");
         for (Book book : books) {
@@ -53,6 +60,19 @@ public class BookList {
             }
         }
         System.out.println("=================================================================");
-        System.out.println("Please input the book number which you want to return. Input 0 to exit.");
+    }
+
+    public void initBorrowedBookList() {
+        books = new ArrayList<Book>();
+        Book book1 = new Book("Harry Potter", "J.K.Rowling", "1997", false, "Mousse");
+        book1.setBookNumber(books.size()+1);
+        books.add(book1);
+        Book book2 = new Book("A Song of Ice and Fire", "George R. R. Martin", "1996", false, "Luca");
+        book2.setBookNumber(books.size()+1);
+        books.add(book2);
+    }
+
+    public String getBookBorrower(int number) {
+        return books.get(number).getBorrower();
     }
 }

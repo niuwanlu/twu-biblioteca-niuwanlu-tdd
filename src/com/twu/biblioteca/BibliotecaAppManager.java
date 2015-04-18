@@ -6,11 +6,15 @@ package com.twu.biblioteca;
 public class BibliotecaAppManager {
 
     public static void main(String[] args) {
+//        BookList bookList = new BookList();
+//        bookList.initBookList();
+//        MovieList movieList = new MovieList();
+//        movieList.initMovieList();
+//        BibliotecaApp bibliotecaApp = new BibliotecaApp(bookList, movieList);
+//        bibliotecaApp.start();
         BookList bookList = new BookList();
-        bookList.initBookList();
-        MovieList movieList = new MovieList();
-        movieList.initMovieList();
-        BibliotecaApp bibliotecaApp = new BibliotecaApp(bookList, movieList);
-        bibliotecaApp.start();
+        bookList.initBorrowedBookList();
+        BibliotecaApp bibliotecaApp = new BibliotecaApp(bookList);
+        bibliotecaApp.checkBookBorrower();
     }
 }

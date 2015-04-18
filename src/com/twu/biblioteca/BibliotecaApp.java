@@ -104,14 +104,14 @@ public class BibliotecaApp {
     }
 
     public void successfulCheckOutBook(int number) {
-        movieList.getMovies().get(number - 1).setAvailable(false);
+        bookList.getBooks().get(number - 1).setAvailable(false);
         System.out.println("Thank you! Enjoy the book.");
-        showMovieListWithCheckOutNote();
+        showBookListWithCheckOutNote();
     }
 
     private void showBookListWithCheckOutNote() {
-        movieList.showMovieList();
-        System.out.println("Please choose the movie number which you want to check out. Input 0 to exit.");
+        bookList.showBookList();
+        System.out.println("Please choose the book number which you want to check out. Input 0 to exit.");
     }
 
     public void unsuccessfulCheckOutBook() {
@@ -120,7 +120,7 @@ public class BibliotecaApp {
     }
 
     public void returnBook() {
-        bookList.showCheckedOutBookList();
+        bookList.showCheckedOutBookListWithPrompt();
         while (scanner.hasNextLine()) {
             int number = Integer.parseInt(scanner.nextLine());
             if (number == 0) {
@@ -136,13 +136,13 @@ public class BibliotecaApp {
 
     public void unsuccessfulReturnBook() {
         System.out.println("That book is not a valid book to return.");
-        bookList.showCheckedOutBookList();
+        bookList.showCheckedOutBookListWithPrompt();
     }
 
     public void successfulReturnBook(int number) {
         bookList.getBooks().get(number-1).setAvailable(true);
         System.out.println("Thank you for returning book.");
-        bookList.showCheckedOutBookList();
+        bookList.showCheckedOutBookListWithPrompt();
     }
 
     public void checkOutMovie() {
@@ -175,4 +175,13 @@ public class BibliotecaApp {
         showMovieListWithCheckOutNote();
     }
 
+    public void checkBookBorrower() {
+        bookList.showCheckedOutBookList();
+        System.out.println("Please input the book number you want to check.");
+        while (scanner.hasNextLine()) {
+            int number = Integer.parseInt(scanner.nextLine());
+            String bookBorrower = bookList.getBookBorrower(number - 1);
+            System.out.println(bookBorrower + " has checked out this book.");
+        }
+    }
 }

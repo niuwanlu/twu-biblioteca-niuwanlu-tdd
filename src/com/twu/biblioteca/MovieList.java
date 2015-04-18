@@ -43,6 +43,6 @@ public class MovieList {
                         + "     Director: " + movie.getDirector() + "    Rating: " + movie.getRating());
             }
         }
-        System.out.println("===========================================================");
+        System.out.println("============================================================");
     }
 }

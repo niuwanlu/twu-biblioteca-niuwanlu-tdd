@@ -31,4 +31,16 @@ public class BibliotecaAppReleaseTwoTest {
         verify(app).checkOutMovie();
         assertEquals(1, app.getMovieList().getAmountOfMovies() - app.getMovieList().getAmountOfAvailableMovies());
     }
+
+    @Test
+    public void testWhoCheckedOutABook() throws Exception {
+        String input = "1";
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+        BookList bookList = Mockito.spy(new BookList());
+        bookList.initBorrowedBookList();
+        BibliotecaApp app = Mockito.spy(new BibliotecaApp(bookList));
+        app.checkBookBorrower();
+        verify(bookList).getBookBorrower(0);
+        assertEquals("Mousse", bookList.getBookBorrower(0));
+    }
 }
