@@ -12,9 +12,15 @@ public class BibliotecaAppManager {
 //        movieList.initMovieList();
 //        BibliotecaApp bibliotecaApp = new BibliotecaApp(bookList, movieList);
 //        bibliotecaApp.start();
-        BookList bookList = new BookList();
-        bookList.initBorrowedBookList();
-        BibliotecaApp bibliotecaApp = new BibliotecaApp(bookList);
-        bibliotecaApp.checkBookBorrower();
+
+//        BookList bookList = new BookList();
+//        bookList.initBorrowedBookList();
+//        BibliotecaApp bibliotecaApp = new BibliotecaApp(bookList);
+//        bibliotecaApp.checkBookBorrower();
+
+        UserList userList = new UserList();
+        userList.initUserList();
+        BibliotecaApp app = new BibliotecaApp(userList);
+        app.userLogin();
     }
 }

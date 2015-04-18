@@ -6,6 +6,7 @@ import org.mockito.Mockito;
 import java.io.ByteArrayInputStream;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
 
 public class BibliotecaAppReleaseTwoTest {
@@ -41,6 +42,24 @@ public class BibliotecaAppReleaseTwoTest {
         BibliotecaApp app = Mockito.spy(new BibliotecaApp(bookList));
         app.checkBookBorrower();
         verify(bookList).getBookBorrower(0);
-        assertEquals("Mousse", bookList.getBookBorrower(0));
+        assertEquals("000-0001", bookList.getBookBorrower(0));
+    }
+
+    @Test
+    public void testUserLoginSuccessful() throws Exception {
+        String input = "000-0001\n123456";
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+        UserList userList = new UserList();
+        userList.initUserList();
+        assertEquals(true, userList.userLogin());
+    }
+
+    @Test
+    public void testUserLoginUnsuccessful() throws Exception {
+        String input = "000-0001\n12345\n325\n356";
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+        UserList userList = new UserList();
+        userList.initUserList();
+        assertEquals(false, userList.userLogin());
     }
 }

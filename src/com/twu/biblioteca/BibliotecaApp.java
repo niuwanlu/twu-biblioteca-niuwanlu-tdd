@@ -9,6 +9,7 @@ public class BibliotecaApp {
 
     private BookList bookList;
     private MovieList movieList;
+    private UserList userList;
     private final Scanner scanner = new Scanner(System.in);
 
     public BibliotecaApp() {
@@ -22,6 +23,10 @@ public class BibliotecaApp {
         this.movieList = movieList;
     }
 
+    public BibliotecaApp(UserList userList) {
+        this.userList = userList;
+    }
+
     public BibliotecaApp(BookList bookList, MovieList movieList) {
         this.bookList = bookList;
         this.movieList = movieList;
@@ -33,6 +38,10 @@ public class BibliotecaApp {
 
     public MovieList getMovieList() {
         return movieList;
+    }
+
+    public UserList getUserList() {
+        return userList;
     }
 
     public void setBookList(BookList bookList) {
@@ -184,4 +193,12 @@ public class BibliotecaApp {
             System.out.println(bookBorrower + " has checked out this book.");
         }
     }
+
+    public void userLogin() {
+        while (!userList.userLogin()) {
+        }
+        System.out.println("Log in successfully.");
+    }
+
+
 }
