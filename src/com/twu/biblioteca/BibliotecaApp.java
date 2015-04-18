@@ -32,6 +32,9 @@ public class BibliotecaApp {
             } else if (option.equals("2")) {
                 checkOutBook();
                 showMainMenu();
+            } else if (option.equals("3")) {
+                returnBook();
+                showMainMenu();
             } else if (option.equals("4")) {
                 quitApp();
                 break;
@@ -74,7 +77,7 @@ public class BibliotecaApp {
             int number = Integer.parseInt(scanner.nextLine());
             if (number == 0) {
                 return;
-            } else if (number > 0 && number <= bookList.getAmountOfBooks()) {
+            } else if (number > 0 && number <= bookList.getAmountOfBooks() && bookList.getBooks().get(number-1).getAvailable()) {
                 successfulCheckOut(number);
             } else {
                 unsuccessfulCheckOut();
@@ -96,5 +99,27 @@ public class BibliotecaApp {
     public void unsuccessfulCheckOut() {
         System.out.println("That book is not available. Please check out other books.");
         showBookListWithCheckOutNote();
+    }
+
+    public void returnBook() {
+        while (scanner.hasNextLine()) {
+            int number = Integer.parseInt(scanner.nextLine());
+            if (number == 0) {
+                return;
+            } else if (number > 0 && number <= bookList.getAmountOfBooks() && !bookList.getBooks().get(number-1).getAvailable()) {
+                successfulReturnBook(number);
+            } else {
+                unsuccessfulReturnBook();
+            }
+        }
+
+    }
+
+    private void unsuccessfulReturnBook() {
+
+    }
+
+    private void successfulReturnBook(int number) {
+        bookList.getBooks().get(number-1).setAvailable(true);
     }
 }
