@@ -4,9 +4,9 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 import java.io.ByteArrayInputStream;
+import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
 
 public class BibliotecaAppReleaseTwoTest {
@@ -51,7 +51,7 @@ public class BibliotecaAppReleaseTwoTest {
         System.setIn(new ByteArrayInputStream(input.getBytes()));
         UserList userList = new UserList();
         userList.initUserList();
-        assertEquals(true, userList.userLogin());
+        assertEquals(userList.getUsers().get(0), userList.userLogin());
     }
 
     @Test
@@ -60,6 +60,19 @@ public class BibliotecaAppReleaseTwoTest {
         System.setIn(new ByteArrayInputStream(input.getBytes()));
         UserList userList = new UserList();
         userList.initUserList();
-        assertEquals(false, userList.userLogin());
+        assertEquals(null, userList.userLogin());
+    }
+
+    @Test
+    public void testUserLoginSuccessfulAndShowInformation() throws Exception {
+        String input = "000-0001\n123456";
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+        User user = Mockito.spy(new User("000-0001", "123456", "Mousse", "mousse@tw.com", "1111111"));
+        ArrayList<User> users = new ArrayList<User>();
+        users.add(user);
+        UserList userList = new UserList(users);
+        BibliotecaApp app = new BibliotecaApp(userList);
+        app.userLogin();
+        verify(user).printUserInformation();
     }
 }

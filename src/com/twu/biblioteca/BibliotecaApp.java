@@ -195,9 +195,12 @@ public class BibliotecaApp {
     }
 
     public void userLogin() {
-        while (!userList.userLogin()) {
-        }
+        User user;
+        do {
+            user = userList.userLogin();
+        } while (user == null);
         System.out.println("Log in successfully.");
+        user.printUserInformation();
     }
 
 

@@ -8,12 +8,24 @@ import java.util.Scanner;
  */
 public class UserList {
 
-    ArrayList<User> users = new ArrayList<User>();
+    private ArrayList<User> users;
+
+    public ArrayList<User> getUsers() {
+        return users;
+    }
+
+    public UserList() {
+    }
+
+    public UserList(ArrayList<User> users) {
+        this.users = users;
+    }
 
     public void initUserList() {
-        User user1 = new User("000-0001", "123456");
+        users = new ArrayList<User>();
+        User user1 = new User("000-0001", "123456", "Mousse", "mousse@tw.com", "1111111");
         users.add(user1);
-        User user2 = new User("000-0002", "654321");
+        User user2 = new User("000-0002", "654321", "Luca", "luca@tw.com", "0000000");
         users.add(user2);
     }
 
@@ -26,13 +38,18 @@ public class UserList {
         return -1;
     }
 
-    public boolean userLogin() {
+    public User userLogin() {
         Scanner scanner = new Scanner(System.in);
-        String exceptedPassword = getInputUserNumber(scanner);
-        return validatePassword(scanner, exceptedPassword);
+        int userIndex = getInputUserNumber(scanner);
+        if (validatePassword(scanner, userIndex)) {
+            return users.get(userIndex);
+        } else {
+            return null;
+        }
     }
 
-    private boolean validatePassword(Scanner scanner, String exceptedPassword) {
+    private boolean validatePassword(Scanner scanner, int userIndex) {
+        String exceptedPassword = users.get(userIndex).getPassword();
         for (int times = 0; times < 3; times++) {
             if (scanner.nextLine().equals(exceptedPassword)) {
                 return true;
@@ -46,7 +63,7 @@ public class UserList {
         return false;
     }
 
-    private String getInputUserNumber(Scanner scanner) {
+    private int getInputUserNumber(Scanner scanner) {
         System.out.println("Please input user number:");
         int userIndex = -1;
         while (scanner.hasNextLine())
@@ -59,7 +76,7 @@ public class UserList {
                 break;
             }
         }
-        return users.get(userIndex).getPassword();
+        return userIndex;
     }
 
 }
