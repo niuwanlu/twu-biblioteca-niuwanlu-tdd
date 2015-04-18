@@ -69,18 +69,32 @@ public class BibliotecaApp {
     }
 
     public void checkOutBook() {
-        showBookList();
-        System.out.println("Please choose the book number which you want to check out. Input 0 to exit.");
+        showBookListWithCheckOutNote();
         while (scanner.hasNextLine()) {
             int number = Integer.parseInt(scanner.nextLine());
             if (number == 0) {
                 return;
+            } else if (number > 0 && number <= bookList.getAmountOfBooks()) {
+                successfulCheckOut(number);
             } else {
-                bookList.getBooks().get(number-1).setAvailable(false);
-                System.out.println("Thank you! Enjoy the book.");
-                showBookList();
-                System.out.println("Please choose the book number which you want to check out. Input 0 to exit.");
+                unsuccessfulCheckOut();
             }
         }
+    }
+
+    public void successfulCheckOut(int number) {
+        bookList.getBooks().get(number - 1).setAvailable(false);
+        System.out.println("Thank you! Enjoy the book.");
+        showBookListWithCheckOutNote();
+    }
+
+    private void showBookListWithCheckOutNote() {
+        showBookList();
+        System.out.println("Please choose the book number which you want to check out. Input 0 to exit.");
+    }
+
+    public void unsuccessfulCheckOut() {
+        System.out.println("That book is not available. Please check out other books.");
+        showBookListWithCheckOutNote();
     }
 }

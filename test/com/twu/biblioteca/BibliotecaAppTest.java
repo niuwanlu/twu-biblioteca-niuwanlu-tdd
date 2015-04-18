@@ -73,4 +73,23 @@ public class BibliotecaAppTest {
         verify(app).checkOutBook();
         assertEquals(1, app.getBookList().getAmountOfBooks() - app.getBookList().getAmountOfAvailableBooks());
     }
+
+    @Test
+    public void testSuccessfulCheckOut() {
+        String input = "2\n1";
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+        BibliotecaApp app = Mockito.spy(new BibliotecaApp());
+        app.start();
+        verify(app).successfulCheckOut(1);
+    }
+
+    @Test
+    public void testUnsuccessfulCheckOut() {
+        String input = "2\n3";
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+        BibliotecaApp app = Mockito.spy(new BibliotecaApp());
+        app.start();
+        verify(app).unsuccessfulCheckOut();
+    }
+
 }
