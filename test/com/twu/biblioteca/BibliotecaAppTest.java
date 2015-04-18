@@ -17,12 +17,6 @@ public class BibliotecaAppTest {
         verify(app, times(1)).showWelcome();
     }
 
-//    @Test
-//    public void testShowBookList() {
-//        BibliotecaApp app = Mockito.spy(new BibliotecaApp());
-//        app.start();
-//        verify(app, times(1)).showBookList();
-//    }
     // TODO test show book details
 
     @Test
@@ -39,5 +33,14 @@ public class BibliotecaAppTest {
         BibliotecaApp app = Mockito.spy(new BibliotecaApp());
         app.start();
         verify(app).showBookList();
+    }
+
+    @Test
+    public void testInvalidMenuOptionCalled() throws Exception {
+        String input = "5";
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+        BibliotecaApp app = Mockito.spy(new BibliotecaApp());
+        app.start();
+        verify(app).invalidOption();
     }
 }

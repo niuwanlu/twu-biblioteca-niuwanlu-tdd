@@ -14,13 +14,23 @@ public class BibliotecaApp {
         showWelcome();
         initBookList();
         showMainMenu();
+        processUserInput();
+    }
+
+    private void processUserInput() {
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNextLine()) {
             String option = scanner.nextLine();
             if (option.equals("1")) {
                 showBookList();
+            } else {
+                invalidOption();
             }
         }
+    }
+
+    public void invalidOption() {
+        System.out.println("This option is invalid, please select a valid option!");
     }
 
     private void initBookList() {
