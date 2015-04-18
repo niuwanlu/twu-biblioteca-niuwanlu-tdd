@@ -34,4 +34,25 @@ public class BookList {
         }
         return count;
     }
+
+    public void showBookList() {
+        System.out.println("======================== Book List ========================");
+        for (Book book : books) {
+            if (book.getAvailable()) {
+                System.out.println("Book Number: " + book.getBookNumber() + "     Book Name: " + book.getName() + "     Author: " + book.getAuthor() + "     Published Year: " + book.getPublishYear());
+            }
+        }
+        System.out.println("===========================================================");
+    }
+
+    public void showCheckedOutBookList() {
+        System.out.println("===================== Checked Out Book List =====================");
+        for (Book book : books) {
+            if (!book.getAvailable()) {
+                System.out.println("Book Number: " + book.getBookNumber() + "     Book Name: " + book.getName() + "     Author: " + book.getAuthor() + "     Published Year: " + book.getPublishYear());
+            }
+        }
+        System.out.println("=================================================================");
+        System.out.println("Please input the book number which you want to return. Input 0 to exit.");
+    }
 }

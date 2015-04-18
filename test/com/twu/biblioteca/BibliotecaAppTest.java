@@ -18,8 +18,6 @@ public class BibliotecaAppTest {
         verify(app, times(1)).showWelcome();
     }
 
-    // TODO test show book details
-
     @Test
     public void testShowMainMenu() {
         BibliotecaApp app = Mockito.spy(new BibliotecaApp());
@@ -31,9 +29,10 @@ public class BibliotecaAppTest {
     public void testListBooksWhenChooseTheOption() {
         String input = "1";
         System.setIn(new ByteArrayInputStream(input.getBytes()));
-        BibliotecaApp app = Mockito.spy(new BibliotecaApp());
-        app.start();
-        verify(app).showBookList();
+        BookList bookList = Mockito.mock(BookList.class);
+        BibliotecaApp app = new BibliotecaApp(bookList);
+        app.processUserInput();
+        verify(bookList).showBookList();
     }
 
     @Test
@@ -49,26 +48,30 @@ public class BibliotecaAppTest {
     public void testContinueChooseOption() {
         String input = "1\n1";
         System.setIn(new ByteArrayInputStream(input.getBytes()));
-        BibliotecaApp app = Mockito.spy(new BibliotecaApp());
-        app.start();
-        verify(app, times(2)).showBookList();
+        BookList bookList = Mockito.mock(BookList.class);
+        BibliotecaApp app = new BibliotecaApp(bookList);
+        app.processUserInput();
+        verify(bookList, times(2)).showBookList();
     }
 
     @Test
     public void testQuitWhenChooseTheOption() {
         String input = "4\n1";
         System.setIn(new ByteArrayInputStream(input.getBytes()));
-        BibliotecaApp app = Mockito.spy(new BibliotecaApp());
-        app.start();
+        BookList bookList = Mockito.mock(BookList.class);
+        BibliotecaApp app = Mockito.spy(new BibliotecaApp(bookList));
+        app.processUserInput();
         verify(app).quitApp();
-        verify(app, never()).showBookList();
+        verify(bookList, never()).showBookList();
     }
 
     @Test
     public void testCheckOutBook() {
         String input = "2\n1";
         System.setIn(new ByteArrayInputStream(input.getBytes()));
-        BibliotecaApp app = Mockito.spy(new BibliotecaApp());
+        BookList bookList = new BookList();
+        bookList.initBookList();
+        BibliotecaApp app = Mockito.spy(new BibliotecaApp(bookList));
         app.start();
         verify(app).checkOutBook();
         assertEquals(1, app.getBookList().getAmountOfBooks() - app.getBookList().getAmountOfAvailableBooks());
@@ -78,7 +81,9 @@ public class BibliotecaAppTest {
     public void testSuccessfulCheckOut() {
         String input = "2\n1";
         System.setIn(new ByteArrayInputStream(input.getBytes()));
-        BibliotecaApp app = Mockito.spy(new BibliotecaApp());
+        BookList bookList = new BookList();
+        bookList.initBookList();
+        BibliotecaApp app = Mockito.spy(new BibliotecaApp(bookList));
         app.start();
         verify(app).successfulCheckOut(1);
     }
@@ -87,7 +92,8 @@ public class BibliotecaAppTest {
     public void testUnsuccessfulCheckOut() {
         String input = "2\n3";
         System.setIn(new ByteArrayInputStream(input.getBytes()));
-        BibliotecaApp app = Mockito.spy(new BibliotecaApp());
+        BookList bookList = Mockito.mock(BookList.class);
+        BibliotecaApp app = Mockito.spy(new BibliotecaApp(bookList));
         app.start();
         verify(app).unsuccessfulCheckOut();
     }
@@ -96,7 +102,9 @@ public class BibliotecaAppTest {
     public void testReturnBook() {
         String input = "2\n1\n0\n3\n1\n";
         System.setIn(new ByteArrayInputStream(input.getBytes()));
-        BibliotecaApp app = Mockito.spy(new BibliotecaApp());
+        BookList bookList = new BookList();
+        bookList.initBookList();
+        BibliotecaApp app = Mockito.spy(new BibliotecaApp(bookList));
         app.start();
         verify(app).returnBook();
         assertEquals(0, app.getBookList().getAmountOfBooks() - app.getBookList().getAmountOfAvailableBooks());
@@ -106,7 +114,9 @@ public class BibliotecaAppTest {
     public void testSuccessfulReturnBook() {
         String input = "2\n1\n0\n3\n1\n";
         System.setIn(new ByteArrayInputStream(input.getBytes()));
-        BibliotecaApp app = Mockito.spy(new BibliotecaApp());
+        BookList bookList = new BookList();
+        bookList.initBookList();
+        BibliotecaApp app = Mockito.spy(new BibliotecaApp(bookList));
         app.start();
         verify(app).successfulReturnBook(1);
     }
@@ -115,7 +125,8 @@ public class BibliotecaAppTest {
     public void testUnsuccessfulReturnBook() throws Exception {
         String input = "2\n1\n0\n3\n2\n";
         System.setIn(new ByteArrayInputStream(input.getBytes()));
-        BibliotecaApp app = Mockito.spy(new BibliotecaApp());
+        BookList bookList = Mockito.mock(BookList.class);
+        BibliotecaApp app = Mockito.spy(new BibliotecaApp(bookList));
         app.start();
         verify(app).unsuccessfulReturnBook();
     }

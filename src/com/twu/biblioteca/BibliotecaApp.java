@@ -1,6 +1,5 @@
 package com.twu.biblioteca;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -11,14 +10,23 @@ public class BibliotecaApp {
     private BookList bookList;
     private final Scanner scanner = new Scanner(System.in);
 
+    public BibliotecaApp() {
+    }
+
+    public BibliotecaApp(BookList bookList) {
+        this.bookList = bookList;
+    }
+
     public BookList getBookList() {
         return bookList;
     }
 
+    public void setBookList(BookList bookList) {
+        this.bookList = bookList;
+    }
+
     public void start() {
         showWelcome();
-        bookList = new BookList();
-        bookList.initBookList();
         showMainMenu();
         processUserInput();
     }
@@ -27,7 +35,7 @@ public class BibliotecaApp {
         while (scanner.hasNextLine()) {
             String option = scanner.nextLine();
             if (option.equals("1")) {
-                showBookList();
+                bookList.showBookList();
                 showMainMenu();
             } else if (option.equals("2")) {
                 checkOutBook();
@@ -51,16 +59,6 @@ public class BibliotecaApp {
     public void showWelcome() {
         System.out.println("Welcome to Biblioteca!");
         System.out.println();
-    }
-
-    public void showBookList() {
-        System.out.println("======================== Book List ========================");
-        for (Book book : bookList.getBooks()) {
-            if (book.getAvailable()) {
-                System.out.println("Book Number: " + book.getBookNumber() + "     Book Name: " + book.getName() + "     Author: " + book.getAuthor() + "     Published Year: " + book.getPublishYear());
-            }
-        }
-        System.out.println("===========================================================");
     }
 
     public void showMainMenu() {
@@ -92,7 +90,7 @@ public class BibliotecaApp {
     }
 
     private void showBookListWithCheckOutNote() {
-        showBookList();
+        bookList.showBookList();
         System.out.println("Please choose the book number which you want to check out. Input 0 to exit.");
     }
 
@@ -102,7 +100,7 @@ public class BibliotecaApp {
     }
 
     public void returnBook() {
-        showCheckedOutBookList();
+        bookList.showCheckedOutBookList();
         while (scanner.hasNextLine()) {
             int number = Integer.parseInt(scanner.nextLine());
             if (number == 0) {
@@ -116,25 +114,14 @@ public class BibliotecaApp {
 
     }
 
-    private void showCheckedOutBookList() {
-        System.out.println("===================== Checked Out Book List =====================");
-        for (Book book : bookList.getBooks()) {
-            if (!book.getAvailable()) {
-                System.out.println("Book Number: " + book.getBookNumber() + "     Book Name: " + book.getName() + "     Author: " + book.getAuthor() + "     Published Year: " + book.getPublishYear());
-            }
-        }
-        System.out.println("=================================================================");
-        System.out.println("Please input the book number which you want to return. Input 0 to exit.");
-    }
-
     public void unsuccessfulReturnBook() {
         System.out.println("That book is not a valid book to return.");
-        showCheckedOutBookList();
+        bookList.showCheckedOutBookList();
     }
 
     public void successfulReturnBook(int number) {
         bookList.getBooks().get(number-1).setAvailable(true);
         System.out.println("Thank you for returning book.");
-        showCheckedOutBookList();
+        bookList.showCheckedOutBookList();
     }
 }

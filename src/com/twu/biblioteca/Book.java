@@ -12,11 +12,6 @@ public class Book {
     private int bookNumber;
     private static int totalNumber = 0;
 
-
-    public Book(String name) {
-        this.name = name;
-    }
-
     public Book(String name, String author, String publishYear, boolean available) {
         this.name = name;
         this.author = author;

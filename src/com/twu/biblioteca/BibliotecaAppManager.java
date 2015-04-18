@@ -6,7 +6,9 @@ package com.twu.biblioteca;
 public class BibliotecaAppManager {
 
     public static void main(String[] args) {
-        BibliotecaApp bibliotecaApp = new BibliotecaApp();
+        BookList bookList = new BookList();
+        bookList.initBookList();
+        BibliotecaApp bibliotecaApp = new BibliotecaApp(bookList);
         bibliotecaApp.start();
     }
 }
