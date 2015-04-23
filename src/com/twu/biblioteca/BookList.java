@@ -30,7 +30,7 @@ public class BookList {
     public int getAmountOfAvailableBooks() {
         int count = 0;
         for (Book book : books) {
-            if (book.getAvailable()) {
+            if (book.isAvailable()) {
                 count++;
             }
         }
@@ -40,7 +40,7 @@ public class BookList {
     public void showBookList() {
         System.out.println("======================== Book List ========================");
         for (Book book : books) {
-            if (book.getAvailable()) {
+            if (book.isAvailable()) {
                 System.out.println("Book Number: " + book.getBookNumber() + "     Book Name: " + book.getName() + "     Author: " + book.getAuthor() + "     Published Year: " + book.getPublishYear());
             }
         }
@@ -55,7 +55,7 @@ public class BookList {
     public void showCheckedOutBookList() {
         System.out.println("===================== Checked Out Book List =====================");
         for (Book book : books) {
-            if (!book.getAvailable()) {
+            if (!book.isAvailable()) {
                 System.out.println("Book Number: " + book.getBookNumber() + "     Book Name: " + book.getName() + "     Author: " + book.getAuthor() + "     Published Year: " + book.getPublishYear());
             }
         }

@@ -70,4 +70,9 @@ public class Movie {
         this.movieNumber = movieNumber;
     }
 
+    public void printInfo() {
+        System.out.println("Movie number: " + getMovieNumber() + "     Movie name: " + getName() + "     Year: " + getYear()
+                + "     Director: " + getDirector() + "    Rating: " + getRating());
+    }
+
 }

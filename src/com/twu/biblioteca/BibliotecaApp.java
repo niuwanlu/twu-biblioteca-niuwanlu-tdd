@@ -104,7 +104,7 @@ public class BibliotecaApp {
             int number = Integer.parseInt(scanner.nextLine());
             if (number == 0) {
                 return;
-            } else if (number > 0 && number <= bookList.getAmountOfBooks() && bookList.getBooks().get(number-1).getAvailable()) {
+            } else if (number > 0 && number <= bookList.getAmountOfBooks() && bookList.getBooks().get(number-1).isAvailable()) {
                 successfulCheckOutBook(number);
             } else {
                 unsuccessfulCheckOutBook();
@@ -134,7 +134,7 @@ public class BibliotecaApp {
             int number = Integer.parseInt(scanner.nextLine());
             if (number == 0) {
                 return;
-            } else if (number > 0 && number <= bookList.getAmountOfBooks() && !bookList.getBooks().get(number-1).getAvailable()) {
+            } else if (number > 0 && number <= bookList.getAmountOfBooks() && !bookList.getBooks().get(number-1).isAvailable()) {
                 successfulReturnBook(number);
             } else {
                 unsuccessfulReturnBook();

@@ -54,7 +54,7 @@ public class Book {
     }
 
 
-    public boolean getAvailable() {
+    public boolean isAvailable() {
         return available;
     }
 
@@ -77,4 +77,9 @@ public class Book {
     public void setBorrower(String borrower) {
         this.borrower = borrower;
     }
+
+    public void printInfo() {
+        System.out.println("Book Number: " + getBookNumber() + "     Book Name: " + getName() + "     Author: " + getAuthor() + "     Published Year: " + getPublishYear());
+    }
+
 }
