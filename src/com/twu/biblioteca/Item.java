@@ -5,8 +5,8 @@ package com.twu.biblioteca;
  */
 public class Item {
 
-    private boolean available;
-    private String borrower;
+    protected boolean available;
+    protected String borrower;
 
     public boolean isAvailable() {
         return available;
@@ -18,6 +18,10 @@ public class Item {
 
     public String getBorrower() {
         return borrower;
+    }
+
+    public void setBorrower(String borrower) {
+        this.borrower = borrower;
     }
 
     public void printInfo() {

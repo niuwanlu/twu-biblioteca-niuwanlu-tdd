@@ -3,16 +3,14 @@ package com.twu.biblioteca;
 /**
  * Created by wlniu on 4/18/15.
  */
-public class Book {
+public class Book extends Item{
 
     private static int totalNumber = 0;
 
     private String name;
     private String author;
     private String publishYear;
-    private boolean available;
     private int bookNumber;
-    private String borrower;
 
     public Book(String name, String author, String publishYear, boolean available) {
         this.name = name;
@@ -53,29 +51,12 @@ public class Book {
         this.publishYear = publishYear;
     }
 
-
-    public boolean isAvailable() {
-        return available;
-    }
-
-    public void setAvailable(boolean available) {
-        this.available = available;
-    }
-
     public int getBookNumber() {
         return bookNumber;
     }
 
     public void setBookNumber(int bookNumber) {
         this.bookNumber = bookNumber;
-    }
-
-    public String getBorrower() {
-        return borrower;
-    }
-
-    public void setBorrower(String borrower) {
-        this.borrower = borrower;
     }
 
     public void printInfo() {

@@ -3,13 +3,12 @@ package com.twu.biblioteca;
 /**
  * Created by wlniu on 4/18/15.
  */
-public class Movie {
+public class Movie extends Item {
 
     private String name;
     private String year;
     private String director;
     private int rating;
-    private boolean available;
     private int movieNumber;
     private static int totalNumber = 0;
 
@@ -52,14 +51,6 @@ public class Movie {
 
     public void setRating(int rating) {
         this.rating = rating;
-    }
-
-    public boolean isAvailable() {
-        return available;
-    }
-
-    public void setAvailable(boolean available) {
-        this.available = available;
     }
 
     public int getMovieNumber() {
