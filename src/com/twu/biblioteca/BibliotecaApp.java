@@ -57,22 +57,22 @@ public class BibliotecaApp {
     public void processUserInput() {
         while (scanner.hasNextLine()) {
             String option = scanner.nextLine();
-            if (option.equals("1")) {
+            if (option.equals(Constants.LIST_BOOKS)) {
                 bookList.showBookList();
                 showMainMenu();
-            } else if (option.equals("2")) {
+            } else if (option.equals(Constants.CHECK_OUT_BOOKS)) {
                 checkOutBook();
                 showMainMenu();
-            } else if (option.equals("3")) {
+            } else if (option.equals(Constants.RETURN_BOOKS)) {
                 returnBook();
                 showMainMenu();
-            } else if (option.equals("4")) {
+            } else if (option.equals(Constants.LIST_MOVIES)) {
                 movieList.showMovieList();
                 showMainMenu();
-            } else if (option.equals("5")) {
+            } else if (option.equals(Constants.CHECK_OUT_MOVIES)) {
                 checkOutMovie();
                 showMainMenu();
-            } else if (option.equals("6")) {
+            } else if (option.equals(Constants.QUIT)) {
                 quitApp();
                 break;
             } else {
@@ -91,7 +91,7 @@ public class BibliotecaApp {
     }
 
     public void showMainMenu() {
-        System.out.println("Please choose an option:\n1.List Books\n2.Check Out Books\n3.Return Books\n4.List Movies\n5.Check Out Movie\n6.Quit\n");
+        System.out.println("Please choose an option:\n1.List Books\n2.Check Out Books\n3.Return Books\n4.List Movies\n5.Check Out Movies\n6.Quit\n");
     }
 
     public void quitApp() {
@@ -186,11 +186,17 @@ public class BibliotecaApp {
 
     public void checkBookBorrower() {
         bookList.showCheckedOutBookList();
-        System.out.println("Please input the book number you want to check.");
+        System.out.println("Please input the book number you want to check. Input 0 to exit.");
         while (scanner.hasNextLine()) {
             int number = Integer.parseInt(scanner.nextLine());
-            String bookBorrower = bookList.getBookBorrower(number - 1);
-            System.out.println(bookBorrower + " has checked out this book.");
+            if (number == 0) {
+                break;
+            } else if (number > 0 && number <= bookList.getBooks().size()) {
+                String bookBorrower = bookList.getBookBorrower(number - 1);
+                System.out.println(bookBorrower + " has checked out this book.");
+            } else {
+                System.out.println("The book number is invalidated.");
+            }
         }
     }
 

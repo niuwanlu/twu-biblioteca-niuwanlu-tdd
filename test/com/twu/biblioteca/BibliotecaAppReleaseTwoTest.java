@@ -35,7 +35,7 @@ public class BibliotecaAppReleaseTwoTest {
 
     @Test
     public void testWhoCheckedOutABook() throws Exception {
-        String input = "1";
+        String input = "1\n3";
         System.setIn(new ByteArrayInputStream(input.getBytes()));
         BookList bookList = Mockito.spy(new BookList());
         bookList.initBorrowedBookList();
@@ -43,6 +43,7 @@ public class BibliotecaAppReleaseTwoTest {
         app.checkBookBorrower();
         verify(bookList).getBookBorrower(0);
         assertEquals("000-0001", bookList.getBookBorrower(0));
+        verify(bookList, never()).getBookBorrower(2);
     }
 
     @Test
