@@ -8,33 +8,25 @@ import java.util.ArrayList;
 public class BibliotecaAppManager {
 
     public static void main(String[] args) {
-        login();
-        checkBorrower();
-    }
-
-    private static void checkBorrower() {
-        ItemList<Book> bookList = new ItemList<Book>();
-        initBorrowedBookList(bookList);
-        ItemList<Movie> movieList = new ItemList<Movie>();
-        BibliotecaApp bibliotecaApp = new BibliotecaApp(bookList, movieList);
-        bibliotecaApp.checkBookBorrower();
-    }
-
-    private static void login() {
-        UserList userList = new UserList();
-        userList.initUserList();
-        BibliotecaApp app = new BibliotecaApp(userList);
-        app.userLogin();
-        appRun();
-    }
-
-    private static void appRun() {
         ItemList<Book> bookList = new ItemList<Book>();
         initBookList(bookList);
         ItemList<Movie> movieList = new ItemList<Movie>();
         initMovieList(movieList);
         BibliotecaApp bibliotecaApp = new BibliotecaApp(bookList, movieList);
-        bibliotecaApp.start();
+        login(bibliotecaApp);
+        checkBorrower(bibliotecaApp);
+    }
+
+    private static void checkBorrower(BibliotecaApp bibliotecaApp) {
+        bibliotecaApp.checkBookBorrower();
+    }
+
+    private static void login(BibliotecaApp bibliotecaApp) {
+        UserList userList = new UserList();
+        userList.initUserList();
+        BibliotecaApp app = new BibliotecaApp(userList);
+        User user = app.userLogin();
+        bibliotecaApp.start(user);
     }
 
     private static void initBookList(ItemList<Book> bookList) {
@@ -57,14 +49,14 @@ public class BibliotecaAppManager {
         movieList.setItems(movies);
     }
 
-    public static void initBorrowedBookList(ItemList<Book> bookList) {
-        ArrayList<Book> books = new ArrayList<Book>();
-        Book book1 = new Book("Harry Potter", "J.K.Rowling", "1997", false, "000-0001");
-        book1.setBookNumber(books.size()+1);
-        books.add(book1);
-        Book book2 = new Book("A Song of Ice and Fire", "George R. R. Martin", "1996", false, "000-0002");
-        book2.setBookNumber(books.size()+1);
-        books.add(book2);
-        bookList.setItems(books);
-    }
+//    public static void initBorrowedBookList(ItemList<Book> bookList) {
+//        ArrayList<Book> books = new ArrayList<Book>();
+//        Book book1 = new Book("Harry Potter", "J.K.Rowling", "1997", false, "000-0001");
+//        book1.setBookNumber(books.size()+1);
+//        books.add(book1);
+//        Book book2 = new Book("A Song of Ice and Fire", "George R. R. Martin", "1996", false, "000-0002");
+//        book2.setBookNumber(books.size()+1);
+//        books.add(book2);
+//        bookList.setItems(books);
+//    }
 }

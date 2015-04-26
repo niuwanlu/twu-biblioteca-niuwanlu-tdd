@@ -10,6 +10,7 @@ public class BibliotecaApp {
     private ItemList<Book> bookList;
     private ItemList<Movie> movieList;
     private UserList userList;
+    private User currentUser;
     private final Scanner scanner = new Scanner(System.in);
 
     public BibliotecaApp() {
@@ -40,7 +41,8 @@ public class BibliotecaApp {
         this.bookList = bookList;
     }
 
-    public void start() {
+    public void start(User user) {
+        currentUser = user;
         showWelcome();
         showMainMenu();
         processUserInput();
@@ -97,6 +99,7 @@ public class BibliotecaApp {
 
     public void successfulCheckOutItem(ItemList itemList, String itemType, int number) {
         itemList.setItemAvailable(number,false);
+        itemList.setItemBorrower(number, currentUser);
         System.out.println("Thank you! Enjoy the " + itemType + ".");
         showItemListWithCheckOutNote(itemList, itemType);
     }
@@ -164,13 +167,14 @@ public class BibliotecaApp {
         }
     }
 
-    public void userLogin() {
+    public User userLogin() {
         User user;
         do {
             user = userList.userLogin();
         } while (user == null);
         System.out.println("Log in successfully.");
         user.printUserInformation();
+        return user;
     }
 
 

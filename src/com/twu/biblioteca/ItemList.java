@@ -67,4 +67,8 @@ public class ItemList<T extends Item> {
     public void setItemAvailable(int number, boolean available) {
         getItems().get(number-1).setAvailable(available);
     }
+
+    public void setItemBorrower(int number, User user) {
+        getItems().get(number-1).setBorrower(user.getUserName());
+    }
 }
