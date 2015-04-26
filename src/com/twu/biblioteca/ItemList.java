@@ -9,6 +9,10 @@ public class ItemList<T extends Item> {
 
     private ArrayList<T> items;
 
+    public void setItems(ArrayList<T> items) {
+        this.items = items;
+    }
+
     public ArrayList<T> getItems() {
         return items;
     }
@@ -27,8 +31,8 @@ public class ItemList<T extends Item> {
         return count;
     }
 
-    public void showItemList() {
-        System.out.println("======================== List ========================");
+    public void showItemList(String itemType) {
+        System.out.println("======================== " + itemType + " List ========================");
         for (T item : items) {
             if (item.isAvailable()) {
                 item.printInfo();
@@ -37,13 +41,13 @@ public class ItemList<T extends Item> {
         System.out.println("===========================================================");
     }
 
-    public void showCheckedOutBookListWithPrompt() {
+    public void showCheckedOutListWithPrompt(String itemType) {
         showCheckedOutList();
-        System.out.println("Please input the book number which you want to return. Input 0 to exit.");
+        System.out.println("Please input the " + itemType + " number which you want to return. Input 0 to exit.");
     }
 
     public void showCheckedOutList() {
-        System.out.println("===================== Checked Out List =====================");
+        System.out.println("======================= Checked Out List ========================");
         for (T item : items) {
             if (!item.isAvailable()) {
                 item.printInfo();
@@ -54,5 +58,13 @@ public class ItemList<T extends Item> {
 
     public String getBookBorrower(int number) {
         return items.get(number).getBorrower();
+    }
+
+    public boolean isItemAvailable(int number) {
+        return getItems().get(number-1).isAvailable();
+    }
+
+    public void setItemAvailable(int number, boolean available) {
+        getItems().get(number-1).setAvailable(available);
     }
 }
