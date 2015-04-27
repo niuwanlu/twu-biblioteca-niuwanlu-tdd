@@ -1,11 +1,14 @@
 package com.twu.biblioteca;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * Created by wlniu on 4/23/15.
  */
 public class ItemList<T extends Item> {
+
+    private final Scanner scanner = new Scanner(System.in);
 
     private ArrayList<T> items;
 
@@ -31,7 +34,8 @@ public class ItemList<T extends Item> {
         return count;
     }
 
-    public void showItemList(String itemType) {
+    public void showItemList() {
+        String itemType = getItemType();
         System.out.println("======================== " + itemType + " List ========================");
         for (T item : items) {
             if (item.isAvailable()) {
@@ -70,5 +74,67 @@ public class ItemList<T extends Item> {
 
     public void setItemBorrower(int number, User user) {
         getItems().get(number-1).setBorrower(user.getUserName());
+    }
+
+    void checkOutItem(User user) {
+        String itemType = getItemType();
+        showItemListWithCheckOutNote(itemType);
+        while (scanner.hasNextLine()) {
+            int number = Integer.parseInt(scanner.nextLine());
+            if (number == 0) {
+                return;
+            } else if (number > 0 && number <= getAmountOfItems() && isItemAvailable(number)) {
+                successfulCheckOutItem(itemType, number, user);
+            } else {
+                unsuccessfulCheckOutItem(itemType);
+            }
+        }
+    }
+
+    void showItemListWithCheckOutNote(String itemType) {
+        showItemList();
+        System.out.println("Please choose the " + itemType + " number which you want to check out. Input 0 to exit.");
+    }
+
+    public void successfulCheckOutItem(String itemType, int number, User user) {
+        setItemAvailable(number, false);
+        setItemBorrower(number, user);
+        System.out.println("Thank you! Enjoy the " + itemType + ".");
+        showItemListWithCheckOutNote(itemType);
+    }
+
+    public void unsuccessfulCheckOutItem(String itemType) {
+        System.out.println("That movie is not available. Please check out other b movies.");
+        showItemListWithCheckOutNote(itemType);
+    }
+
+    public void returnItem() {
+        String itemType = getItemType();
+        showCheckedOutListWithPrompt(itemType);
+        while (scanner.hasNextLine()) {
+            int number = Integer.parseInt(scanner.nextLine());
+            if (number == 0) {
+                return;
+            } else if (number > 0 && number <= getAmountOfItems() && !isItemAvailable(number)) {
+                successfulReturnItem(itemType, number);
+            } else {
+                unsuccessfulReturnItem(itemType);
+            }
+        }
+    }
+
+    public void successfulReturnItem(String itemType, int number) {
+        setItemAvailable(number, true);
+        System.out.println("Thank you for returning " + itemType + ".");
+        showCheckedOutListWithPrompt(itemType);
+    }
+
+    public void unsuccessfulReturnItem(String itemType) {
+        System.out.println("That " + itemType + " is not a valid " + itemType + " to return.");
+        showCheckedOutListWithPrompt(itemType);
+    }
+
+    public String getItemType() {
+        return items.get(0).getClass().getSimpleName();
     }
 }

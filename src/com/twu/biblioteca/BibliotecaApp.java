@@ -52,22 +52,22 @@ public class BibliotecaApp {
         while (scanner.hasNextLine()) {
             String option = scanner.nextLine();
             if (option.equals(Constants.LIST_BOOKS)) {
-                bookList.showItemList("Book");
+                bookList.showItemList();
                 showMainMenu();
             } else if (option.equals(Constants.CHECK_OUT_BOOKS)) {
-                checkOutItem(bookList, "Book");
+                bookList.checkOutItem(currentUser);
                 showMainMenu();
             } else if (option.equals(Constants.RETURN_BOOKS)) {
-                returnItem(bookList, "Book");
+                bookList.returnItem();
                 showMainMenu();
             } else if (option.equals(Constants.LIST_MOVIES)) {
-                movieList.showItemList("Movie");
+                movieList.showItemList();
                 showMainMenu();
             } else if (option.equals(Constants.CHECK_OUT_MOVIES)) {
-                checkOutItem(movieList, "Movie");
+                movieList.checkOutItem(currentUser);
                 showMainMenu();
             } else if (option.equals(Constants.RETURN_MOVIES)) {
-                returnItem(movieList, "Movie");
+                movieList.returnItem();
                 showMainMenu();
             } else if (option.equals(Constants.QUIT)) {
                 quitApp();
@@ -76,37 +76,6 @@ public class BibliotecaApp {
                 invalidOption();
             }
         }
-    }
-
-    private void checkOutItem(ItemList itemList, String itemType) {
-        showItemListWithCheckOutNote(itemList, itemType);
-        while (scanner.hasNextLine()) {
-            int number = Integer.parseInt(scanner.nextLine());
-            if (number == 0) {
-                return;
-            } else if (number > 0 && number <= itemList.getAmountOfItems() && itemList.isItemAvailable(number)) {
-                successfulCheckOutItem(itemList, itemType, number);
-            } else {
-                unsuccessfulCheckOutItem(itemList, itemType);
-            }
-        }
-    }
-
-    private void showItemListWithCheckOutNote(ItemList itemList, String itemType) {
-        itemList.showItemList(itemType);
-        System.out.println("Please choose the " + itemType + " number which you want to check out. Input 0 to exit.");
-    }
-
-    public void successfulCheckOutItem(ItemList itemList, String itemType, int number) {
-        itemList.setItemAvailable(number,false);
-        itemList.setItemBorrower(number, currentUser);
-        System.out.println("Thank you! Enjoy the " + itemType + ".");
-        showItemListWithCheckOutNote(itemList, itemType);
-    }
-
-    public void unsuccessfulCheckOutItem(ItemList itemList, String itemType) {
-        System.out.println("That movie is not available. Please check out other b movies.");
-        showItemListWithCheckOutNote(itemList, itemType);
     }
 
     public void invalidOption() {
@@ -124,31 +93,6 @@ public class BibliotecaApp {
 
     public void quitApp() {
         System.out.println("Quit! Bye");
-    }
-
-    public void returnItem(ItemList itemList, String itemType) {
-        itemList.showCheckedOutListWithPrompt(itemType);
-        while (scanner.hasNextLine()) {
-            int number = Integer.parseInt(scanner.nextLine());
-            if (number == 0) {
-                return;
-            } else if (number > 0 && number <= itemList.getAmountOfItems() && !itemList.isItemAvailable(number)) {
-                successfulReturnItem(itemList,itemType, number);
-            } else {
-                unsuccessfulReturnItem(itemList, itemType);
-            }
-        }
-    }
-
-    public void successfulReturnItem(ItemList itemList, String itemType, int number) {
-        itemList.setItemAvailable(number, true);
-        System.out.println("Thank you for returning " + itemType + ".");
-        itemList.showCheckedOutListWithPrompt(itemType);
-    }
-
-    public void unsuccessfulReturnItem(ItemList itemList, String itemType) {
-        System.out.println("That " + itemType + " is not a valid " + itemType + " to return.");
-        itemList.showCheckedOutListWithPrompt(itemType);
     }
 
     public void checkBookBorrower() {
