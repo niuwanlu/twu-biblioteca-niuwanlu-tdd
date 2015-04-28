@@ -1,11 +1,9 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.model;
 
 /**
  * Created by wlniu on 4/18/15.
  */
-public class Book extends Item{
-
-    private static int totalNumber = 0;
+public class Book extends Item {
 
     private String name;
     private String author;

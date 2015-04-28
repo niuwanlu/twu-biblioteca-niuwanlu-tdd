@@ -1,10 +1,10 @@
 package com.twu.biblioteca;
 
-import org.junit.Assert;
+import com.twu.biblioteca.model.Book;
+import com.twu.biblioteca.model.User;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 
 import static org.mockito.Mockito.*;

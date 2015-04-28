@@ -1,4 +1,6 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.model;
+
+import com.twu.biblioteca.model.Item;
 
 /**
  * Created by wlniu on 4/18/15.

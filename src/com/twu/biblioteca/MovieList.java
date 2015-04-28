@@ -1,5 +1,7 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.model.Movie;
+
 import java.util.ArrayList;
 
 /**
