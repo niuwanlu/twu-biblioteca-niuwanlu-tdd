@@ -3,7 +3,6 @@ package com.twu.biblioteca;
 import com.twu.biblioteca.model.User;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  * Created by wlniu on 4/28/15.
@@ -11,7 +10,6 @@ import java.util.Scanner;
 public class UserManager {
 
     private ArrayList<User> users;
-    private Scanner scanner = new Scanner(System.in);
 
     public void setUsers(ArrayList<User> users) {
         this.users = users;
@@ -36,5 +34,16 @@ public class UserManager {
 
     public boolean validatePassword(String expectedPassword, String inputPassword) {
         return expectedPassword.equals(inputPassword);
+    }
+
+    public void login() {
+        String userInput = "";
+        int index = -1;
+        while ( index == -1) {
+            userInput = InputManager.getInput();
+            index = getUserIndex(userInput);
+        }
+        getExpectedPassword(index);
+
     }
 }
