@@ -10,6 +10,7 @@ import org.powermock.modules.junit4.PowerMockRunner;
 
 import java.util.ArrayList;
 
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.powermock.api.mockito.PowerMockito.when;
@@ -30,6 +31,31 @@ public class UserManagerStaticTest {
         verify(userManager, times(1)).getUserIndex("000-0000");
         verify(userManager, times(1)).getUserIndex("000-0001");
         verify(userManager, times(1)).getExpectedPassword(0);
+    }
+
+    @Test
+    public void testLogin() throws Exception {
+        UserManager userManager = Mockito.spy(new UserManager());
+        ArrayList<User> users = new ArrayList<User>();
+        User user1 = new User("000-0001", "123456", "Mousse", "mousse@tw.com", "1111111");
+        users.add(user1);
+        userManager.setUsers(users);
+        PowerMockito.mockStatic(InputManager.class);
+        when(InputManager.getInput()).thenReturn("000-0001").thenReturn("123456");
+        User loginUser = userManager.login();
+        assertEquals(user1, loginUser);
+    }
+
+    @Test
+    public void testInputWrongPasswordThreeTimesRelogin() throws Exception {
+        UserManager userManager = Mockito.spy(new UserManager());
+        ArrayList<User> users = new ArrayList<User>();
+        User user1 = new User("000-0001", "123456", "Mousse", "mousse@tw.com", "1111111");
+        users.add(user1);
+        userManager.setUsers(users);
+        PowerMockito.mockStatic(InputManager.class);
+        when(InputManager.getInput()).thenReturn("000-0001").thenReturn("123").thenReturn("456").thenReturn("789");
+        assertEquals(null, userManager.oneLogin());
     }
 
     private UserManager initUserManager() {

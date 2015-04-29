@@ -25,7 +25,7 @@ public class UserManager {
                 return i;
             }
         }
-        return -1;
+        return Constants.NO_EXIST_USER_NUMBER;
     }
 
     public String getExpectedPassword(int index) {
@@ -36,14 +36,27 @@ public class UserManager {
         return expectedPassword.equals(inputPassword);
     }
 
-    public void login() {
+    public User login() {
+        User loginUser = null;
+        while (loginUser == null) {
+            loginUser = oneLogin();
+        }
+        return loginUser;
+    }
+
+    public User oneLogin() {
         String userInput = "";
-        int index = -1;
-        while ( index == -1) {
+        int index = Constants.NO_EXIST_USER_NUMBER;
+        while ( index == Constants.NO_EXIST_USER_NUMBER) {
             userInput = InputManager.getInput();
             index = getUserIndex(userInput);
         }
-        getExpectedPassword(index);
-
+        String expectedPassword = getExpectedPassword(index);
+        for (int inputTimes = 0; inputTimes < Constants.MAX_PASSWORD_INPUT_TIMES; inputTimes++) {
+            if (InputManager.getInput().equals(expectedPassword)) {
+                return users.get(index);
+            }
+        }
+        return null;
     }
 }
