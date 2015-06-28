@@ -1,0 +1,25 @@
+body:before {
+    content: "";
+    position: absolute;
+    background: url("/images/home_background.jpg");
+    background-size: cover;
+    z-index: -1;
+    height: 20%;
+    width: 20%;
+    transform: scale(5);
+    transform-origin: top left;
+    -webkit-filter: blur(0.5px);
+}
+
+
+#welcome_message {
+    background: rgba(255, 255, 255, .3);
+    text-align: center;
+    font-size: 30px;
+    color: white;
+    width: 30%;
+    top: 50%;
+    position: absolute;
+    left: 35%;
+    border-radius: 5px;
+}
