@@ -1,13 +1,15 @@
 package com.twu.biblioteca;
 
 import com.twu.biblioteca.model.User;
-import junit.framework.TestCase;
 import org.junit.Test;
 
 import java.util.ArrayList;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
-public class UserManagerTest extends TestCase {
+
+public class UserManagerTest {
 
     @Test
     public void testGetUserIndex() throws Exception {
