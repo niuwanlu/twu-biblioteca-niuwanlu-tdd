@@ -13,5 +13,31 @@
     <link rel="stylesheet" href="/scripts/css/main.css" type="text/css"/>
 </head>
 <body>
-<div id="welcome_message">Welcome to Biblioteca!</div>
+<div id="login">
+    Welcome to Biblioteca!
+    <form method="post">
+
+        <div class="login_input">
+            <input type="text" required>
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label>Name</label>
+        </div>
+
+        <div class="login_input">
+            <input type="password" required>
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label>Password</label>
+        </div>
+
+        <div>
+            <input class="login_button" type="submit" value="Log In">
+        </div>
+    </form>
+</div>
+
+
+
+
 </body>
