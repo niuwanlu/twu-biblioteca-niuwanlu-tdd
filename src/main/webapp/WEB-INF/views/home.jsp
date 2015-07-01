@@ -4,6 +4,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
@@ -15,17 +16,17 @@
 <body>
 <div id="login">
     Welcome to Biblioteca!
-    <form method="post">
+    <form action="<c:url value='j_spring_security_check' />" method="post">
 
         <div class="login_input">
-            <input type="text" required>
+            <input type="text" required name='j_username'>
             <span class="highlight"></span>
             <span class="bar"></span>
             <label>Name</label>
         </div>
 
         <div class="login_input">
-            <input type="password" required>
+            <input type="password" required name='j_password'>
             <span class="highlight"></span>
             <span class="bar"></span>
             <label>Password</label>
@@ -37,7 +38,5 @@
     </form>
 </div>
 
-
-
-
 </body>
+</html>
