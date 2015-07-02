@@ -12,7 +12,7 @@
         <form-login login-page="/"
                     default-target-url="/bookList"
                     always-use-default-target="true"
-                    authentication-failure-url="http://www.google.com"
+                    authentication-failure-url="/loginfailed"
                 />
         <logout logout-success-url="/" />
         <access-denied-handler error-page="/403" />
@@ -20,9 +20,11 @@
 
     <authentication-manager alias="authenticationManager">
         <authentication-provider>
-            <user-service>
-                <user name="user" password="1234" authorities="ROLE_USER" />
-            </user-service>
+            <jdbc-user-service data-source-ref="dataSource"
+                               users-by-username-query=
+                                       "select username, password, enabled from users where username=?"
+                               authorities-by-username-query=
+                                       "select username, authority from user_roles where username =?  " />
         </authentication-provider>
     </authentication-manager>
 
