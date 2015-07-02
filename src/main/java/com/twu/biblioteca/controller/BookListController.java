@@ -1,6 +1,7 @@
 package com.twu.biblioteca.controller;
 
 import com.twu.biblioteca.model.Book;
+import com.twu.biblioteca.service.BookListService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,22 +15,21 @@ import java.util.ArrayList;
 @Controller
 public class BookListController {
 
+    private BookListService bookListService;
+
+    public BookListController() {
+        this.bookListService = new BookListService();
+    }
+
+    public BookListController(BookListService bookListService) {
+        this.bookListService = bookListService;
+    }
+
     @RequestMapping(value = "/bookList", method = RequestMethod.GET)
     public String login(Model model) {
-        ArrayList<Book> books = initBookList();
+        ArrayList<Book> books = bookListService.getBookList();
         model.addAttribute("books", books);
-        model.addAttribute("hello", "hello my dear");
         return "bookList";
     }
 
-    public ArrayList<Book> initBookList() {
-        ArrayList<Book> books = new ArrayList<Book>();
-        Book book1 = new Book("Harry Potter", "J.K.Rowling", "1997", true);
-        book1.setBookNumber(books.size()+1);
-        books.add(book1);
-        Book book2 = new Book("A Song of Ice and Fire", "George R. R. Martin", "1996", true);
-        book2.setBookNumber(books.size()+1);
-        books.add(book2);
-        return books;
-    }
 }
