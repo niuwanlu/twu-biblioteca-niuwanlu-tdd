@@ -27,3 +27,16 @@ Instructions to open your code in Intellij
 2. Select the directory containing the code
 DONE !
 
+Create database
+    $ ./create_database.sh
+
+Init migration when the path directory is empty
+    $ mvn migration:init -Dmigration.path=db/migration
+
+Apply migration to database
+    $ mvn migration:up -Dmigration.path=db/migration
+
+    $ mvn migration:status -Dmigration.path=db/migration
+
+Create new scriot
+    $ mvn migration:new -Dmigration.path=db/migration -Dmigration.description=migration_script_name
