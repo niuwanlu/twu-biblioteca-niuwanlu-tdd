@@ -36,6 +36,10 @@
             <input class="login_button" type="submit" value="Log In">
         </div>
     </form>
+
+    <div>
+        <a href="/register">Register</a>
+    </div>
 </div>
 
 </body>
