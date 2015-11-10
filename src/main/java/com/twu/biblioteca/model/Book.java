@@ -1,14 +1,14 @@
 package com.twu.biblioteca.model;
 
-/**
- * Created by wlniu on 4/18/15.
- */
 public class Book extends Item {
 
     private String name;
     private String author;
     private String publishYear;
     private int bookNumber;
+
+    public Book() {
+    }
 
     public Book(String name, String author, String publishYear, boolean available) {
         this.name = name;
