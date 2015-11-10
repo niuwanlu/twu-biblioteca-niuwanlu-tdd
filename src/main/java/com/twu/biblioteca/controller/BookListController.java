@@ -2,6 +2,7 @@ package com.twu.biblioteca.controller;
 
 import com.twu.biblioteca.model.Book;
 import com.twu.biblioteca.service.BookListService;
+import com.twu.biblioteca.service.impl.BookListServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,16 +10,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.ArrayList;
 
-/**
- * Created by wlniu on 01/07/15.
- */
 @Controller
 public class BookListController {
 
     private BookListService bookListService;
 
     public BookListController() {
-        this.bookListService = new BookListService();
+        this.bookListService = new BookListServiceImpl();
     }
 
     public BookListController(BookListService bookListService) {
