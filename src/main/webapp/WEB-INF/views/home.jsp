@@ -38,7 +38,7 @@
     </form>
 
     <div>
-        <a href="/register">Register</a>
+        <p class="hint_message">Have no account? <a href="/register">Register</a> now</p>
     </div>
 </div>
 
