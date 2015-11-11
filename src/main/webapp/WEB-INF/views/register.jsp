@@ -8,13 +8,19 @@
     <title>Register</title>
 </head>
 <body>
-    <form id="register-form">
-      <label>Name</label>
-      <input type="text" id="username" name="username">
-      <label>Password</label>
-      <input type="password" id="password" name="password">
-      <input type="submit">
-    </form>
+<form id="register-form">
+    <label>Name</label>
+    <div>
+        <input type="text" id="username" name="username">
+    </div>
+
+    <label>Password</label>
+    <div>
+        <input type="password" id="password" name="password">
+    </div>
+
+    <input type="submit">
+</form>
 
 </body>
 </html>

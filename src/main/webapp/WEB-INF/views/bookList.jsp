@@ -1,5 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<script type="text/javascript" src="/scripts/js/jquery/jquery-2.0.3.min.js"></script>
+<script src="/scripts/js/book-reference.js"></script>
+
 <!DOCTYPE html>
 <html>
 <head>
